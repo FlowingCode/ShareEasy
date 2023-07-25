@@ -1,22 +1,26 @@
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/template-addon)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/app-layout-addon.svg)](https://vaadin.com/directory/component/template-addon)
-[![Build Status](https://jenkins.flowingcode.com/job/template-addon/badge/icon)](https://jenkins.flowingcode.com/job/template-addon)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/share-easy-addon)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/share-easy-addon.svg)](https://vaadin.com/directory/component/share-easy-addon)
+[![Build Status](https://jenkins.flowingcode.com/job/share-easy-addon/badge/icon)](https://jenkins.flowingcode.com/job/share-easy-addon)
 
-# Template Add-on
+# Share Easy Add-on
 
-This is a template project for building new Vaadin 24 add-ons
+Share Easy provides easy social media sharing capabilities by displaying a social media menu that can have different modes and customizations.
+
+This component is a wrapper of [Sharee](https://github.com/parsagholipour/sharee) package.
 
 ## Features
 
-* List the features of your add-on in here
+- Default social media drivers to share links easily: Copy, Twitter, Facebook, Linkedin, Whatsapp, Telegram.
+- Modes to display the Easy Share menu: Fixed, Normal, Hover, Text, Dropdown.
+- By defaut, locale and keys are in English but custom locales and keys can be defined.
 
 ## Online demo
 
-[Online demo here](http://addonsv24.flowingcode.com/template)
+[Online demo here](http://addonsv24.flowingcode.com/share-easy)
 
 ## Download release
 
-[Available in Vaadin Directory](https://vaadin.com/directory/component/template-addon)
+[Available in Vaadin Directory](https://vaadin.com/directory/component/share-easy-addon)
 
 ### Maven install
 
@@ -25,7 +29,7 @@ Add the following dependencies in your pom.xml file:
 ```xml
 <dependency>
    <groupId>org.vaadin.addons.flowingcode</groupId>
-   <artifactId>template-addon</artifactId>
+   <artifactId>share-easy-addon</artifactId>
    <version>X.Y.Z</version>
 </dependency>
 ```
@@ -49,7 +53,7 @@ To see the demo, navigate to http://localhost:8080/
 
 ## Release notes
 
-See [here](https://github.com/FlowingCode/TemplateAddon/releases)
+See [here](https://github.com/FlowingCode/ShareEasy/releases)
 
 ## Issue tracking
 
@@ -74,13 +78,21 @@ Then, follow these steps for creating a contibution:
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-TEMPLATE_ADDON is written by Flowing Code S.A.
+Share Easy is written by Flowing Code S.A.
 
 # Developer Guide
 
 ## Getting started
 
-Add your code samples in this section
+```java
+/* Fixed mode */
+FixedShareEasy.create().forComponent(this);
+
+/* Normal mode */
+Div div = new Div();
+NormalShareEasy.create().withNoTitle(true).forComponent(div);
+add(div);
+```
 
 ## Special configuration when using Spring
 

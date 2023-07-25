@@ -1,6 +1,6 @@
 /*-
  * #%L
- * Template Add-on
+ * Share Easy Add-on
  * %%
  * Copyright (C) 2023 Flowing Code
  * %%
@@ -17,16 +17,23 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons.template.test;
+package com.flowingcode.vaadin.addons.shareeasy.test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import com.flowingcode.vaadin.addons.template.TemplateAddon;
 import org.junit.Assert;
 import org.junit.Test;
+import com.flowingcode.vaadin.addons.shareeasy.DropdownShareEasy;
+import com.flowingcode.vaadin.addons.shareeasy.FixedShareEasy;
+import com.flowingcode.vaadin.addons.shareeasy.HoverShareEasy;
+import com.flowingcode.vaadin.addons.shareeasy.NormalShareEasy;
+import com.flowingcode.vaadin.addons.shareeasy.TextShareEasy;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Paragraph;
 
 public class SerializationTest {
 
@@ -35,7 +42,8 @@ public class SerializationTest {
     try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
       oos.writeObject(obj);
     }
-    try (ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()))) {
+    try (ObjectInputStream in =
+        new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()))) {
       obj.getClass().cast(in.readObject());
     }
   }
@@ -43,7 +51,21 @@ public class SerializationTest {
   @Test
   public void testSerialization() throws ClassNotFoundException, IOException {
     try {
-      testSerializationOf(new TemplateAddon());
+      Div divFixed = new Div();
+      FixedShareEasy.create().forComponent(divFixed);
+      testSerializationOf(divFixed);      
+      Div divNormal = new Div();
+      NormalShareEasy.create().forComponent(divNormal);
+      testSerializationOf(divNormal);      
+      Paragraph p = new Paragraph();
+      TextShareEasy.create().forComponent(p);
+      testSerializationOf(p);      
+      Button buttonDropdown = new Button();
+      DropdownShareEasy.create().forComponent(buttonDropdown);
+      testSerializationOf(buttonDropdown);      
+      Button buttonHover = new Button();
+      HoverShareEasy.create().forComponent(buttonHover);
+      testSerializationOf(buttonHover);
     } catch (Exception e) {
       Assert.fail("Problem while testing serialization: " + e.getMessage());
     }

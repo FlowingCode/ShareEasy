@@ -17,15 +17,23 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
+package com.flowingcode.vaadin.addons.shareeasy.enums;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+/**
+ * Enumeration to represent the types of animation that can be defined in DROPDOWN mode. Possible
+ * values: fade, fade-down.
+ */
+public enum Animation {
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+  FADE("fade"), FADE_DOWM("fade-down");
 
-  public DemoLayout() {
-    setSizeFull();
+  private String name;
+
+  private Animation(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
   }
 }

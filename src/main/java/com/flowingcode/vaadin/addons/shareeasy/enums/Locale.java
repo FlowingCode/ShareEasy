@@ -17,15 +17,22 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
+package com.flowingcode.vaadin.addons.shareeasy.enums;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+/**
+ * Enumeration to represent the default locales provided by Sharee library. Possible values: fa, en.
+ */
+public enum Locale {
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+  ENGLISH("en"), PERSIAN("fa");
 
-  public DemoLayout() {
-    setSizeFull();
+  private String name;
+
+  private Locale(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
   }
 }

@@ -17,15 +17,24 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
+package com.flowingcode.vaadin.addons.shareeasy.enums;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+/**
+ * Enumeration to represent type options. Possible values: column, row, grid. Only for DROPDOWN
+ * mode.
+ */
+public enum Type {
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+  GRID("grid"), COLUMN("column"), ROW("row");
 
-  public DemoLayout() {
-    setSizeFull();
+  private String name;
+
+  private Type(String name) {
+    this.name = name;
   }
+
+  public String getName() {
+    return name;
+  }
+
 }

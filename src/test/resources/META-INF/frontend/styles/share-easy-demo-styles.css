@@ -17,15 +17,28 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+/*Demo styles*/
+.main {
+	margin: 0 auto;
+	padding-left: 30px;
+	padding-right: 65px;
+}
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+.container {
+	text-align: left;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
 
-  public DemoLayout() {
-    setSizeFull();
-  }
+.container span {
+	font-size: var(--lumo-font-size-l);
+	font-weight: 600;
+	display: block;
+	padding: 5px 0 10px 0;
+}
+
+.container span vaadin-button vaadin-icon {
+	width: var(--lumo-icon-size-s);
+	height: var(--lumo-icon-size-s);
 }

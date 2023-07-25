@@ -17,15 +17,24 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
+package com.flowingcode.vaadin.addons.shareeasy.enums;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+/**
+ * Enumeration that represents the drivers provided by default by Sharee library. Values: copy,
+ * telegram, facebook, whatsapp, twitter, linkedin.
+ */
+public enum Driver {
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+  COPY("copy"), TELEGRAM("telegram"), FACEBOOK("facebook"), WHATSAPP("whatsapp"), TWITTER(
+      "twitter"), LINKEDIN("linkedin");
 
-  public DemoLayout() {
-    setSizeFull();
+  private String name;
+
+  private Driver(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
   }
 }

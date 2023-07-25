@@ -17,15 +17,24 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.vaadin.addons;
+package com.flowingcode.vaadin.addons.shareeasy.enums;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.RouterLayout;
+/**
+ * Enumeration that represents the possible modes for Sharee. Modes can be: dropdown, text, normal,
+ * fixed, hover.
+ */
+public enum Mode {
 
-@SuppressWarnings("serial")
-public class DemoLayout extends Div implements RouterLayout {
+  DROPDOWN("dropdown"), TEXT("text"), NORMAL("normal"), FIXED("fixed"), HOVER("hover");
 
-  public DemoLayout() {
-    setSizeFull();
+  private String name;
+
+  private Mode(String name) {
+    this.name = name;
   }
+
+  public String getName() {
+    return name;
+  }
+
 }

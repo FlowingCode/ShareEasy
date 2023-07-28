@@ -19,8 +19,11 @@
  */
 package com.flowingcode.vaadin.addons.shareeasy;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Locale;
+import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
 import com.flowingcode.vaadin.addons.shareeasy.util.Options;
 import com.vaadin.flow.component.Component;
@@ -44,6 +47,8 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   private Component component;
 
   private Options options = new Options();
+
+  Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
 
   /**
    * Sets the share link for the shared content.
@@ -133,9 +138,17 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   }
 
   private void createSharee() {
-    component.getElement().executeJs("fcShareeConnector.create($0, $1)", component.getElement(),
-        getJsonObjectOptions().toJson());
-
+    String shareeOptions = getJsonObjectOptions().toJson();
+    if (!customDrivers.isEmpty()) {
+      for(CustomDriverOptions options : customDrivers.values()) {
+        component.getElement().executeJs("fcShareeConnector.addCustomDriver(this, $0)",
+            options.getJsonObject().toJson());
+      }
+      component.getElement().executeJs("fcShareeConnector.createWithCustomDrivers(this, $0)",
+          shareeOptions);
+    } else {
+      component.getElement().executeJs("fcShareeConnector.create(this, $0)", shareeOptions);
+    }
   }
 
   /**
@@ -159,6 +172,17 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   public T withCustomLanguageKeys(String locale, LanguageKeys languageKeys) {
     this.options.locale = locale;
     this.options.languageKeys = languageKeys;
+    return (T) this;
+  }
+
+  /**
+   * Sets custom drivers (new social options).
+   * 
+   * @param customDrivers The custom drivers
+   * @return The current instance of the BaseSharee class
+   */
+  public T withCustomDrivers(Map<String, CustomDriverOptions> customDrivers) {
+    this.customDrivers = new HashMap<>(customDrivers);
     return (T) this;
   }
 

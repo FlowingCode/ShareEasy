@@ -19,8 +19,11 @@
  */
 package com.flowingcode.vaadin.addons.shareeasy;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
+import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.PageTitle;
@@ -71,13 +74,20 @@ public class NormalModeDemo extends BaseShareEasyDemo {
 
     Div normalDiv6 = new Div();
     NormalShareEasy.create().withShareText("Visit our demo at: ").forComponent(normalDiv6);
-    add(createContainerDiv("With share text", normalDiv6)); // hide-source
+    add(createContainerDiv("With custom share text", normalDiv6)); // hide-source
     addSeparator(); // hide-source
 
     Div normalDiv7 = new Div();
     NormalShareEasy.create().withShareText("Visit our website! Go to ")
         .withShareLink("https://www.flowingcode.com/en/").forComponent(normalDiv7);
-    add(createContainerDiv("With share text & share link", normalDiv7)); // hide-source
+    add(createContainerDiv("With custom share text & custom share link", normalDiv7)); // hide-source
+    addSeparator(); // hide-source
+
+    Div normalDiv8 = new Div();
+    Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
+    customDrivers.put("Trello", new TrelloDriverOptions());
+    NormalShareEasy.create().withCustomDrivers(customDrivers).forComponent(normalDiv8);
+    add(createContainerDiv("With custom driver for extra socials: Trello", normalDiv8)); // hide-source
   }
 
 }

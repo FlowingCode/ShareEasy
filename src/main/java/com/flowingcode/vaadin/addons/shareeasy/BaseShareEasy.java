@@ -41,7 +41,7 @@ import elemental.json.JsonObject;
  */
 @NpmPackage(value = "sharee", version = "1.1.13")
 @JsModule("./src/fc-sharee-connector.js")
-@CssImport("./styles/style.css")
+@CssImport("./styles/fc-share-easy/style.css")
 class BaseShareEasy<T extends BaseShareEasy<T>> {
 
   private Component component;

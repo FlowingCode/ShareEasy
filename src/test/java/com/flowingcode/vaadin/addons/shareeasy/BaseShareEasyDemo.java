@@ -20,6 +20,7 @@
 package com.flowingcode.vaadin.addons.shareeasy;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -38,7 +39,7 @@ import com.vaadin.flow.dom.ElementFactory;
 public class BaseShareEasyDemo extends Div {
 
   public BaseShareEasyDemo() {
-    setClassName("main");
+    setClassName("share-easy-main");
   }
 
   protected Div createContainerDiv(String title, Component component) {
@@ -46,7 +47,7 @@ public class BaseShareEasyDemo extends Div {
     containerDiv.add(new Span(new Text(title)), component);
     return containerDiv;
   }
-  
+
   protected Div createContainerDivWithInfo(String title, Component component, String info) {
     Div containerDiv = createContainerDiv();
     Button infoButton = new Button(new Icon(VaadinIcon.INFO_CIRCLE_O));
@@ -54,16 +55,16 @@ public class BaseShareEasyDemo extends Div {
     infoButton.setTooltipText(info);
     Tooltip tooltip = infoButton.getTooltip().withManual(true);
     infoButton.addClickListener(event -> {
-        tooltip.setOpened(!tooltip.isOpened());
+      tooltip.setOpened(!tooltip.isOpened());
     });
     Span titleSpan = new Span(new Text(title), infoButton);
     containerDiv.add(titleSpan, component);
     return containerDiv;
   }
-  
+
   private Div createContainerDiv() {
     Div containerDiv = new Div();
-    containerDiv.setClassName("container");
+    containerDiv.setClassName("share-easy-container");
     return containerDiv;
   }
 
@@ -71,5 +72,16 @@ public class BaseShareEasyDemo extends Div {
     Element hr = ElementFactory.createHr();
     this.getElement().appendChild(hr);
   }
-  
+
+  @Override
+  protected void onDetach(DetachEvent detachEvent) {
+    super.onDetach(detachEvent);
+    removeExistingFixedMenus();
+  }
+    
+  protected void removeExistingFixedMenus() {
+    this.getElement().executeJs(
+        "let fixedSharees = document.getElementsByClassName('sharee__fixed'); while(fixedSharees.length > 0) { fixedSharees[0].remove();}");
+  }
+
 }

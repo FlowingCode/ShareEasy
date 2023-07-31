@@ -19,26 +19,33 @@
  */
 
 /*Demo styles*/
-.main {
-	margin: 0 auto;
-	padding-left: 30px;
-	padding-right: 65px;
+.share-easy-main {
+	padding-left: 10px;
+	padding-right: 25px;
 }
 
-.container {
+.share-easy-main.share-easy-fixed {
+	padding-left: 25px;
+}
+
+.share-easy-container {
 	text-align: left;
 	padding-bottom: 10px;
 	padding-left: 20px;
 }
 
-.container span {
+.share-easy-container span {
 	font-size: var(--lumo-font-size-l);
 	font-weight: 600;
 	display: block;
 	padding: 5px 0 10px 0;
 }
 
-.container span vaadin-button vaadin-icon {
+.share-easy-container span vaadin-button vaadin-icon {
 	width: var(--lumo-icon-size-s);
 	height: var(--lumo-icon-size-s);
+}
+
+.share-easy-fixed-horizontal {
+	flex-wrap: wrap;
 }

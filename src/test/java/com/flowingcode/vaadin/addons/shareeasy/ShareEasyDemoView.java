@@ -36,6 +36,10 @@ public class ShareEasyDemoView extends TabbedDemo {
   public ShareEasyDemoView() {
     addDemo(DefaultValuesDemo.class);
     addDemo(NormalModeDemo.class);
+    addDemo(DropdownModeDemo.class);
+    addDemo(TextModeDemo.class);
+    addDemo(HoverModeDemo.class);
+    addDemo(FixedModeDemo.class);
     setSizeFull();
   }
 }

@@ -20,13 +20,13 @@
 package com.flowingcode.vaadin.addons.shareeasy;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
-import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -41,16 +41,36 @@ import com.vaadin.flow.router.Route;
 public class DefaultValuesDemo extends BaseShareEasyDemo {
 
   public DefaultValuesDemo() {
+    Button showBtn = new Button("Show");
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Fixed Mode", new Div(),
+    addClassName("share-easy-fixed");
+    HorizontalLayout btnsLayout = new HorizontalLayout();    
+    showBtn.addThemeVariants(ButtonVariant.LUMO_LARGE);
+    showBtn.setDisableOnClick(true);    
+    Button hideBtn = new Button("Hide");
+    hideBtn.addThemeVariants(ButtonVariant.LUMO_LARGE);
+    hideBtn.setDisableOnClick(true);
+    hideBtn.setEnabled(false);
+    btnsLayout.add(showBtn, hideBtn);
+    add(createContainerDivWithInfo("Fixed Mode", btnsLayout,
         "Fixed Mode: Share Easy menu is attached to the document's body and displays as a vertical menu. By default is added at top left position."));
     addSeparator();
     // #endif
-    FixedShareEasy.create().forComponent(this);
+    showBtn.addClickListener(e -> {
+      FixedShareEasy.create().forComponent(this);
+      hideBtn.setEnabled(true); // hide-source
+    });
+    // #if vaadin eq 0
+    hideBtn.addClickListener(e -> {
+      this.removeExistingFixedMenus();
+      showBtn.setEnabled(true);
+    });
+    // #endif
 
     Div normalDiv = new Div();
     NormalShareEasy.create().forComponent(normalDiv);
     add(createContainerDiv("Normal Mode", normalDiv)); // hide-source
+    // show-source add(normalDiv);
     addSeparator(); // hide-source
 
     Button dropdownButton = new Button("Share this");
@@ -61,6 +81,7 @@ public class DefaultValuesDemo extends BaseShareEasyDemo {
         "Dropdown Mode: Share Easy menu will appear on hover. As default it will be shown as a column dropdown."));
     addSeparator();
     // #endif
+    // show-source add(dropdownButton);
 
     Paragraph paragraph = new Paragraph(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
@@ -70,6 +91,7 @@ public class DefaultValuesDemo extends BaseShareEasyDemo {
         "Text Mode: Select some text and Share Easy menu will popup to share the selected text."));
     addSeparator();
     // #endif
+    // show-source add(paragraph);
 
     Button hoverButton = new Button(new Icon(VaadinIcon.CONNECT));
     hoverButton.addThemeVariants(ButtonVariant.LUMO_ICON);
@@ -78,13 +100,7 @@ public class DefaultValuesDemo extends BaseShareEasyDemo {
     add(createContainerDivWithInfo("Hover Mode", hoverButton,
         "Hover Mode: Share Easy menu will appear on hover and will be displayed as an horizontal/row menu only."));
     // #endif
+    // show-source add(hoverButton);
   }
 
-  // #if vaadin eq 0
-  @Override
-  protected void onDetach(DetachEvent detachEvent) {
-    super.onDetach(detachEvent);
-    this.getElement().executeJs("document.getElementsByClassName('sharee__fixed')[0].remove()");
-  }
-  // #endif
 }

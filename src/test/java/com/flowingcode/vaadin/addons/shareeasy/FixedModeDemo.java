@@ -44,9 +44,13 @@ public class FixedModeDemo extends BaseShareEasyDemo {
   public FixedModeDemo() {
     addClassName("share-easy-fixed");// hide-source    
     Button topleft = createButton("Top Left");
+    topleft.setId("topleft"); // hide-source 
     Button bottomleft = createButton("Bottom Left");
+    bottomleft.setId("bottomleft"); // hide-source 
     Button topright = createButton("Top Right");
+    topright.setId("topright"); // hide-source 
     Button bottomright = createButton("Bottom Right");
+    bottomright.setId("bottomright"); // hide-source 
 
     topleft.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
@@ -89,10 +93,15 @@ public class FixedModeDemo extends BaseShareEasyDemo {
     // #endif
 
     Button btn1 = createShowButton();
+    btn1.setId("notitle"); // hide-source 
     Button btn2 = createShowButton();
+    btn2.setId("twodrivers"); // hide-source 
     Button btn3 = createShowButton();
+    btn3.setId("customtext"); // hide-source 
     Button btn4 = createShowButton();
+    btn4.setId("customlink"); // hide-source 
     Button btn5 = createShowButton();
+    btn5.setId("extrasocial"); // hide-source 
 
     btn1.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source

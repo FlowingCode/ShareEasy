@@ -20,19 +20,15 @@
 package com.flowingcode.vaadin.addons.shareeasy.util;
 
 import java.util.Optional;
-
 import org.apache.commons.lang3.StringUtils;
-
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Locale;
-
 import elemental.json.Json;
 import elemental.json.JsonArray;
 import elemental.json.JsonObject;
 
 /**
- * Representation of the default options that can be configure for a {@link BaseShareEasy ShareEasy}
- * component.
+ * Representation of the default options that can be configure for a Share Easy component.
  */
 public class Options {
 

@@ -19,6 +19,8 @@
  */
 package com.flowingcode.vaadin.addons.shareeasy.enums;
 
+import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
+
 /**
  * Enumeration to represent the types of direction that {@link LanguageKeys} allows.
  */

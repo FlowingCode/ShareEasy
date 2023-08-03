@@ -21,11 +21,11 @@ package com.flowingcode.vaadin.addons.shareeasy.it;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.html.testbench.AnchorElement;
-import com.vaadin.flow.component.html.testbench.DivElement;
 
 public class ShareEasyFixedModeIT extends BaseShareEasyIT {
+
+  private static final int DEFAULT_FIXED_DRIVER_COUNT = 5;
 
   public ShareEasyFixedModeIT() {
     super("share-easy/fixed-mode");
@@ -33,51 +33,47 @@ public class ShareEasyFixedModeIT extends BaseShareEasyIT {
 
   @Test
   public void withPositionTopLeft() {
-    ButtonElement topLeftButton = $(ButtonElement.class).id("topleft");
-    topLeftButton.click();
+    this.clickButtonElement("topleft");
     boolean fixedTopLeftExists =
-        $(DivElement.class).attributeContains("class", "sharee__fixed")
-        .attributeContains("class", "sharee__position__top-left").exists();
-   assertTrue("Fixed share easy with top left position does not exist", fixedTopLeftExists);    
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed")
+            .attributeContains("class", "sharee__position__top-left").exists();
+    assertTrue("Fixed share easy with top left position does not exist", fixedTopLeftExists);
   }
-  
+
   @Test
   public void withPositionBottomLeft() {
-    ButtonElement bottomLeftButton = $(ButtonElement.class).id("bottomleft");
-    bottomLeftButton.click();
+    this.clickButtonElement("bottomleft");
     boolean fixedBottomLeftExists =
-        $(DivElement.class).attributeContains("class", "sharee__fixed")
-        .attributeContains("class", "sharee__position__bottom-left").exists();
-   assertTrue("Fixed share easy with bottom left position does not exist", fixedBottomLeftExists);    
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed")
+            .attributeContains("class", "sharee__position__bottom-left").exists();
+    assertTrue("Fixed share easy with bottom left position does not exist", fixedBottomLeftExists);
   }
-  
+
   @Test
   public void withPositionTopRight() {
-    ButtonElement topRightButton = $(ButtonElement.class).id("topright");
-    topRightButton.click();
+    this.clickButtonElement("topright");
     boolean fixedTopRightExists =
-        $(DivElement.class).attributeContains("class", "sharee__fixed")
-        .attributeContains("class", "sharee__position__top-right").exists();
-   assertTrue("Fixed share easy with top right position does not exist", fixedTopRightExists);    
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed")
+            .attributeContains("class", "sharee__position__top-right").exists();
+    assertTrue("Fixed share easy with top right position does not exist", fixedTopRightExists);
   }
 
   @Test
   public void withPositionBottomRight() {
-    ButtonElement bottomRightButton = $(ButtonElement.class).id("bottomright");
-    bottomRightButton.click();
+    this.clickButtonElement("bottomright");
     boolean fixedBottomRightExists =
-        $(DivElement.class).attributeContains("class", "sharee__fixed")
-        .attributeContains("class", "sharee__position__bottom-right").exists();
-   assertTrue("Fixed share easy with bottom right position does not exist", fixedBottomRightExists);    
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed")
+            .attributeContains("class", "sharee__position__bottom-right").exists();
+    assertTrue("Fixed share easy with bottom right position does not exist",
+        fixedBottomRightExists);
   }
-  
+
   @Test
   public void withNoTitle() {
-    ButtonElement button = $(ButtonElement.class).id("notitle");
-    button.click();
-    DivElement fixedShareWithNoTitle =
-        $(DivElement.class).attributeContains("class", "sharee__fixed").first();
-    int driversCount = this.getAllDriversAnchors(fixedShareWithNoTitle).size();
+    this.clickButtonElement("notitle");
+    ShareEasyElement fixedShareWithNoTitle =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed").first();
+    int driversCount = fixedShareWithNoTitle.getAllDriversAnchors().size();
     int withNoTitleCount = fixedShareWithNoTitle.$(AnchorElement.class)
         .attributeContains("class", "sharee__no-title").all().size();
     assertTrue("Fixed Share Easy has noTitle set but is showing title",
@@ -86,21 +82,20 @@ public class ShareEasyFixedModeIT extends BaseShareEasyIT {
 
   @Test
   public void withOnlyTwoDrivers() {
-    ButtonElement button = $(ButtonElement.class).id("twodrivers");
-    button.click();
-    DivElement fixedWithOnlyTwoDrivers =
-        $(DivElement.class).attributeContains("class", "sharee__fixed").first();
-    int driversCount = this.getAllDriversAnchors(fixedWithOnlyTwoDrivers).size();
+    this.clickButtonElement("twodrivers");
+    ShareEasyElement fixedWithOnlyTwoDrivers =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed").first();
+    int driversCount = fixedWithOnlyTwoDrivers.getAllDriversAnchors().size();
     assertTrue("Normal Share Easy shows more than 2 drivers", driversCount == 2);
   }
 
   @Test
   public void withExtraSocial() {
-    ButtonElement button = $(ButtonElement.class).id("extrasocial");
-    button.click();
-    DivElement normalWithExtraSocial =
-        $(DivElement.class).attributeContains("class", "sharee__fixed").first();
-    int driversCount = this.getAllDriversAnchors(normalWithExtraSocial).size();
-    assertTrue("Normal Share Easy shows no extra social", driversCount == 6);
+    this.clickButtonElement("extrasocial");
+    ShareEasyElement fixedWithExtraSocial =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__fixed").first();
+    int driversCount = fixedWithExtraSocial.getAllDriversAnchors().size();
+    assertTrue("Normal Share Easy shows no extra social",
+        driversCount == DEFAULT_FIXED_DRIVER_COUNT + 1);
   }
 }

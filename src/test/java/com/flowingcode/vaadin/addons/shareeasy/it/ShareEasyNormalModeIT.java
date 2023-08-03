@@ -23,9 +23,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import com.vaadin.flow.component.html.testbench.AnchorElement;
-import com.vaadin.flow.component.html.testbench.DivElement;
 
 public class ShareEasyNormalModeIT extends BaseShareEasyIT {
+
+  private static final int DEFAULT_NORMAL_DRIVER_COUNT = 6;
 
   public ShareEasyNormalModeIT() {
     super("share-easy/normal-mode");
@@ -33,20 +34,22 @@ public class ShareEasyNormalModeIT extends BaseShareEasyIT {
 
   @Test
   public void withDefaultDrivers() {
-    DivElement normalShareWithNoTitle =
-        $(DivElement.class).attributeContains("class", "sharee__normal").get(0);
-    int driversCount = this.getAllDriversAnchors(normalShareWithNoTitle).size();
-    assertFalse("Normal Share Easy is showing more than default drivers", driversCount > 6);
-    assertFalse("Normal Share Easy is showing less than default drivers", driversCount < 6);
+    ShareEasyElement normalShareWithNoTitle =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__normal").get(0);
+    int driversCount = normalShareWithNoTitle.getAllDriversAnchors().size();
+    assertFalse("Normal Share Easy is showing more than default drivers",
+        driversCount > DEFAULT_NORMAL_DRIVER_COUNT);
+    assertFalse("Normal Share Easy is showing less than default drivers",
+        driversCount < DEFAULT_NORMAL_DRIVER_COUNT);
     assertTrue("Normal Share Easy doesn't contain all default drivers as expected",
-        this.normalModeContainAllDefaultValues(normalShareWithNoTitle));
+        normalShareWithNoTitle.normalModeContainAllDefaultValues());
   }
 
   @Test
   public void withNoTitle() {
-    DivElement normalShareWithNoTitle =
-        $(DivElement.class).attributeContains("class", "sharee__normal").get(1);
-    int driversCount = this.getAllDriversAnchors(normalShareWithNoTitle).size();
+    ShareEasyElement normalShareWithNoTitle =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__normal").get(1);
+    int driversCount = normalShareWithNoTitle.getAllDriversAnchors().size();
     int withNoTitleCount = normalShareWithNoTitle.$(AnchorElement.class)
         .attributeContains("class", "sharee__no-title").all().size();
     assertTrue("Normal Share Easy has noTitle set but is showing title",
@@ -55,17 +58,18 @@ public class ShareEasyNormalModeIT extends BaseShareEasyIT {
 
   @Test
   public void withOnlyTwoDrivers() {
-    DivElement normalWithOnlyTwoDrivers =
-        $(DivElement.class).attributeContains("class", "sharee__normal").get(2);
-    int driversCount = this.getAllDriversAnchors(normalWithOnlyTwoDrivers).size();
+    ShareEasyElement normalWithOnlyTwoDrivers =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__normal").get(2);
+    int driversCount = normalWithOnlyTwoDrivers.getAllDriversAnchors().size();
     assertTrue("Normal Share Easy shows more than 2 drivers", driversCount == 2);
   }
 
   @Test
   public void withExtraSocial() {
-    DivElement normalWithExtraSocial =
-        $(DivElement.class).attributeContains("class", "sharee__normal").get(6);
-    int driversCount = this.getAllDriversAnchors(normalWithExtraSocial).size();
-    assertTrue("Normal Share Easy shows no extra social", driversCount == 7);
+    ShareEasyElement normalWithExtraSocial =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__normal").get(6);
+    int driversCount = normalWithExtraSocial.getAllDriversAnchors().size();
+    assertTrue("Normal Share Easy shows no extra social",
+        driversCount == DEFAULT_NORMAL_DRIVER_COUNT + 1);
   }
 }

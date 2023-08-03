@@ -21,10 +21,9 @@ package com.flowingcode.vaadin.addons.shareeasy.it;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import com.vaadin.flow.component.html.testbench.DivElement;
 
 public class ShareEasyDefaultValuesIT extends AbstractViewTest {
-    
+
   public ShareEasyDefaultValuesIT() {
     super("share-easy/default-values");
   }
@@ -32,25 +31,25 @@ public class ShareEasyDefaultValuesIT extends AbstractViewTest {
   @Test
   public void componentExistsForAllModes() {
     boolean fixedShareEasyExists =
-        $(DivElement.class).onPage().attributeContains("class", "sharee__fixed")
+        $(ShareEasyElement.class).onPage().attributeContains("class", "sharee__fixed")
             .attributeContains("class", "sharee__position__top-left").exists();
     assertTrue("Fixed Share Easy at top left not present", fixedShareEasyExists);
 
     boolean normalShareEasyExists =
-        $(DivElement.class).attributeContains("class", "sharee__normal").exists();
+        $(ShareEasyElement.class).attributeContains("class", "sharee__normal").exists();
     assertTrue("Normal Share Easy not present", normalShareEasyExists);
 
     boolean dropdownShareEasyExists =
-        $(DivElement.class).onPage().attributeContains("class", "sharee__dropdown").exists();
+        $(ShareEasyElement.class).onPage().attributeContains("class", "sharee__dropdown").exists();
     assertTrue("Dropdown Share Easy not present", dropdownShareEasyExists);
 
     boolean textShareEasyExists =
-        $(DivElement.class).onPage().attributeContains("class", "sharee__text").exists();
+        $(ShareEasyElement.class).onPage().attributeContains("class", "sharee__text").exists();
     assertTrue("Text Share Easy not present", textShareEasyExists);
 
     boolean hoverShareEasyExists =
-        $(DivElement.class).onPage().attributeContains("class", "sharee__hover").exists();
-    assertTrue("Hover Share Easy not present", hoverShareEasyExists);    
-  }  
+        $(ShareEasyElement.class).onPage().attributeContains("class", "sharee__hover").exists();
+    assertTrue("Hover Share Easy not present", hoverShareEasyExists);
+  }
 
 }

@@ -1,6 +1,6 @@
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/share-easy-addon)
 [![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/share-easy-addon.svg)](https://vaadin.com/directory/component/share-easy-addon)
-[![Build Status](https://jenkins.flowingcode.com/job/share-easy-addon/badge/icon)](https://jenkins.flowingcode.com/job/share-easy-addon)
+[![Build Status](https://jenkins.flowingcode.com/job/ShareEasy-addon/badge/icon)](https://jenkins.flowingcode.com/job/ShareEasy-addon)
 
 # Share Easy Add-on
 
@@ -78,7 +78,7 @@ Then, follow these steps for creating a contibution:
 
 This add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-Share Easy is written by Flowing Code S.A.
+Share Easy Add-on is written by Flowing Code S.A.
 
 # Developer Guide
 

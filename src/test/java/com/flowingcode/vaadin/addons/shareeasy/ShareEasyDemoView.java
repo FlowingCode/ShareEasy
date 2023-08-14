@@ -20,6 +20,7 @@
 package com.flowingcode.vaadin.addons.shareeasy;
 
 import com.flowingcode.vaadin.addons.DemoLayout;
+import com.flowingcode.vaadin.addons.GithubBranch;
 import com.flowingcode.vaadin.addons.GithubLink;
 import com.flowingcode.vaadin.addons.demo.TabbedDemo;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -31,6 +32,7 @@ import com.vaadin.flow.router.Route;
 @Route("share-easy")
 @GithubLink("https://github.com/FlowingCode/ShareEasy")
 @CssImport("./styles/share-easy-demo-styles.css")
+@GithubBranch("initial-implementation")
 public class ShareEasyDemoView extends TabbedDemo {
 
   public ShareEasyDemoView() {

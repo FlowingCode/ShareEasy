@@ -53,8 +53,8 @@ public class NormalModeDemo extends BaseShareEasyDemo {
 
     Div normalDiv3 = new Div();
     LanguageKeys languageKeys1 = new LanguageKeys();
-    languageKeys1.twitter = "Share on Twitter";
-    languageKeys1.linkedin = "Share on Linkedin";
+    languageKeys1.setTwitter("Share on Twitter");
+    languageKeys1.setLinkedin("Share on Linkedin");
     NormalShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.TWITTER})
         .withCustomLanguageKeys(languageKeys1).forComponent(normalDiv3);
     add(createContainerDiv("With only 2 drivers & custom language keys", normalDiv3)); // hide-source
@@ -63,8 +63,8 @@ public class NormalModeDemo extends BaseShareEasyDemo {
 
     Div normalDiv4 = new Div();
     LanguageKeys languageKeys2 = new LanguageKeys();
-    languageKeys2.copiedSuccessfully = "Copiado";
-    languageKeys2.copyLink = "Copiar link";
+    languageKeys2.setCopiedSuccessfully("Copiado");
+    languageKeys2.setCopyLink("Copiar link");
     NormalShareEasy.create().withCustomLanguageKeys("es", languageKeys2).forComponent(normalDiv4);
     add(createContainerDiv("With custom locale: es (spanish)", normalDiv4)); // hide-source
     // show-source add(normalDiv4);

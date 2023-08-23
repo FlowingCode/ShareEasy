@@ -33,14 +33,78 @@ public class LanguageKeys {
     LTR, RTL;
   }
 
-  public String copiedSuccessfully = "Copied successfully";
-  public Direction direction = Direction.LTR;
-  public String telegram = "Telegram";
-  public String copyLink = "Copy Link";
-  public String whatsapp = "Whatsapp";
-  public String twitter = "Twitter";
-  public String linkedin = "Linkedin";
-  public String facebook = "Facebook";
+  private String copiedSuccessfully = "Copied successfully";
+  private Direction direction = Direction.LTR;
+  private String telegram = "Telegram";
+  private String copyLink = "Copy Link";
+  private String whatsapp = "Whatsapp";
+  private String twitter = "Twitter";
+  private String linkedin = "Linkedin";
+  private String facebook = "Facebook";  
+
+  public String getCopiedSuccessfully() {
+    return copiedSuccessfully;
+  }
+  
+  public void setCopiedSuccessfully(String copiedSuccessfully) {
+    this.copiedSuccessfully = copiedSuccessfully;
+  }
+
+  public Direction getDirection() {
+    return direction;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
+
+  public String getTelegram() {
+    return telegram;
+  }
+
+  public void setTelegram(String telegram) {
+    this.telegram = telegram;
+  }
+
+  public String getCopyLink() {
+    return copyLink;
+  }
+  
+  public void setCopyLink(String copyLink) {
+    this.copyLink = copyLink;
+  }
+
+  public String getWhatsapp() {
+    return whatsapp;
+  }
+
+  public void setWhatsapp(String whatsapp) {
+    this.whatsapp = whatsapp;
+  }
+
+  public String getTwitter() {
+    return twitter;
+  }
+
+  public void setTwitter(String twitter) {
+    this.twitter = twitter;
+  }
+
+  public String getLinkedin() {
+    return linkedin;
+  }
+
+  public void setLinkedin(String linkedin) {
+    this.linkedin = linkedin;
+  }
+
+  public String getFacebook() {
+    return facebook;
+  }
+
+  public void setFacebook(String facebook) {
+    this.facebook = facebook;
+  }
 
   public JsonObject getJsonObject() {
     JsonObject js = Json.createObject();

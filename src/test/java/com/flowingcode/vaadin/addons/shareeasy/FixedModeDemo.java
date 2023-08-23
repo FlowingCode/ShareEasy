@@ -123,8 +123,8 @@ public class FixedModeDemo extends BaseShareEasyDemo {
     btn2.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       LanguageKeys languageKeys1 = new LanguageKeys();
-      languageKeys1.twitter = "Share on Twitter";
-      languageKeys1.linkedin = "Share on Linkedin";
+      languageKeys1.setTwitter("Share on Twitter");
+      languageKeys1.setLinkedin("Share on Linkedin");
       FixedShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.TWITTER})
           .withCustomLanguageKeys(languageKeys1).forComponent(this);
       topleft.setEnabled(true); // hide-source

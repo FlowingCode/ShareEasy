@@ -33,20 +33,76 @@ import elemental.json.JsonObject;
 public class Options {
 
   /* By default current page's title */
-  public String shareText;
+  private String shareText;
 
   /* By default current page's url */
-  public String shareLink;
+  private String shareLink;
 
-  public boolean ripple = true;
+  private boolean ripple = true;
 
-  public String showTransitionDuration = "200ms";
+  private String showTransitionDuration = "200ms";
 
-  public String locale = Locale.ENGLISH.getName();
+  private String locale = Locale.ENGLISH.getName();
 
-  public LanguageKeys languageKeys;
+  private LanguageKeys languageKeys;
 
-  public Driver[] drivers = Driver.values();
+  private Driver[] drivers = Driver.values();  
+
+  public String getShareText() {
+    return shareText;
+  }
+
+  public void setShareText(String shareText) {
+    this.shareText = shareText;
+  }
+
+  public String getShareLink() {
+    return shareLink;
+  }
+
+  public void setShareLink(String shareLink) {
+    this.shareLink = shareLink;
+  }
+
+  public boolean isRipple() {
+    return ripple;
+  }
+
+  public void setRipple(boolean ripple) {
+    this.ripple = ripple;
+  }
+
+  public String getShowTransitionDuration() {
+    return showTransitionDuration;
+  }
+
+  public void setShowTransitionDuration(String showTransitionDuration) {
+    this.showTransitionDuration = showTransitionDuration;
+  }
+
+  public String getLocale() {
+    return locale;
+  }
+
+  public void setLocale(String locale) {
+    this.locale = locale;
+  }
+
+  public LanguageKeys getLanguageKeys() {
+    return languageKeys;
+  }
+
+  public void setLanguageKeys(LanguageKeys languageKeys) {
+    this.languageKeys = languageKeys;
+  }
+
+  public Driver[] getDrivers() {
+    return drivers;
+  }
+
+  public void setDrivers(Driver[] drivers) {
+    this.drivers = drivers;
+  }
 
   public JsonObject getJsonObject() {
     JsonObject js = Json.createObject();

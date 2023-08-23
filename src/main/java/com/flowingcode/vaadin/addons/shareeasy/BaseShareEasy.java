@@ -57,7 +57,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withShareLink(String shareLink) {
-    this.options.shareLink = shareLink;
+    this.options.setShareLink(shareLink);
     return (T) this;
   }
 
@@ -68,7 +68,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withShareText(String shareText) {
-    this.options.shareText = shareText;
+    this.options.setShareText(shareText);
     return (T) this;
   }
 
@@ -79,7 +79,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withRipple(boolean ripple) {
-    this.options.ripple = ripple;
+    this.options.setRipple(ripple);
     return (T) this;
   }
 
@@ -90,7 +90,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withShowTransitionDuration(String showTransitionDuration) {
-    this.options.showTransitionDuration = showTransitionDuration;
+    this.options.setShowTransitionDuration(showTransitionDuration);
     return (T) this;
   }
 
@@ -102,7 +102,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withLocale(Locale locale) {
-    this.options.locale = locale.getName();
+    this.options.setLocale(locale.getName());
     return (T) this;
   }
 
@@ -114,7 +114,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   T withDrivers(Driver[] drivers) {
-    this.options.drivers = drivers;
+    this.options.setDrivers(drivers);
     return (T) this;
   }
 
@@ -158,7 +158,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withCustomLanguageKeys(LanguageKeys languageKeys) {
-    this.options.languageKeys = languageKeys;
+    this.options.setLanguageKeys(languageKeys);
     return (T) this;
   }
 
@@ -170,8 +170,8 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @return The current instance of the BaseSharee class
    */
   public T withCustomLanguageKeys(String locale, LanguageKeys languageKeys) {
-    this.options.locale = locale;
-    this.options.languageKeys = languageKeys;
+    this.options.setLocale(locale);
+    this.options.setLanguageKeys(languageKeys);
     return (T) this;
   }
 

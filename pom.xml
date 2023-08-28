@@ -38,9 +38,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/FlowingCode/ShareEsy</url>
-		<connection>scm:git:git://github.com/FlowingCode/ShareEsy.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/ShareEsy.git</developerConnection>
+		<url>https://github.com/FlowingCode/ShareEasy</url>
+		<connection>scm:git:git://github.com/FlowingCode/ShareEasy.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:/FlowingCode/ShareEasy.git</developerConnection>
 		<tag>master</tag>
 	</scm>
 

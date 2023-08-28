@@ -32,7 +32,7 @@ import com.vaadin.flow.router.Route;
 @Route("share-easy")
 @GithubLink("https://github.com/FlowingCode/ShareEasy")
 @CssImport("./styles/share-easy-demo-styles.css")
-@GithubBranch("initial-implementation")
+@GithubBranch("master")
 public class ShareEasyDemoView extends TabbedDemo {
 
   public ShareEasyDemoView() {

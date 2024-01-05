@@ -51,6 +51,13 @@ public class FixedShareEasy extends BaseShareEasy<FixedShareEasy> {
     this.noTitle = noTitle;
     return this;
   }
+  
+  @Override
+  FixedShareEasy withDrivers(ShareEasyDriver[] drivers) {
+    FixedShareEasy fixedShareEasy = super.withDrivers(drivers);
+    this.withDefaultDriversListFirst = true;
+    return fixedShareEasy;
+  }
 
   @Override
   protected JsonObject getJsonObjectOptions() {

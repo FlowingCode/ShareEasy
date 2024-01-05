@@ -21,13 +21,14 @@ package com.flowingcode.vaadin.addons.shareeasy.util;
 
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
+import com.flowingcode.vaadin.addons.shareeasy.ShareEasyDriver;
 import elemental.json.Json;
 import elemental.json.JsonObject;
 
 /**
  * Representation of the options to be defined to create a custom driver.
  */
-public class CustomDriverOptions {
+public class CustomDriverOptions implements ShareEasyDriver {
 
   private String buttonText;
 
@@ -62,8 +63,6 @@ public class CustomDriverOptions {
   public String getIconSvg() {
     return iconSvg;
   }
-
-
 
   public void setIconSvg(String iconSvg) {
     this.iconSvg = iconSvg;
@@ -133,6 +132,7 @@ public class CustomDriverOptions {
     this.shareTextParam = shareTextParam;
   }
 
+  @Override
   public String getName() {
     return name;
   }

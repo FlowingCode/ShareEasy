@@ -49,6 +49,8 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   private Options options = new Options();
 
   Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
+  
+  protected boolean withDefaultDriversListFirst = true;
 
   /**
    * Sets the share link for the shared content.
@@ -107,14 +109,15 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   }
 
   /**
-   * Sets the social media drivers to be displayed. Default values are listed in {@link Driver
-   * Driver}.
+   * Sets the social media drivers to be displayed (default and/or custom drivers). Default values
+   * are listed in {@link Driver Driver}.
    *
-   * @param drivers An array of social media driver names
+   * @param drivers An array of social media drivers
    * @return The current instance of the BaseSharee class
    */
-  T withDrivers(Driver[] drivers) {
+  T withDrivers(ShareEasyDriver[] drivers) {
     this.options.setDrivers(drivers);
+    this.withDefaultDriversListFirst = false;
     return (T) this;
   }
 
@@ -139,16 +142,24 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
 
   private void createSharee() {
     String shareeOptions = getJsonObjectOptions().toJson();
-    if (!customDrivers.isEmpty()) {
-      for(CustomDriverOptions options : customDrivers.values()) {
+    if(customDrivers.isEmpty()) {
+      this.create(shareeOptions);
+    } else {
+      for (CustomDriverOptions options : customDrivers.values()) {
         component.getElement().executeJs("fcShareeConnector.addCustomDriver(this, $0)",
             options.getJsonObject().toJson());
       }
-      component.getElement().executeJs("fcShareeConnector.createWithCustomDrivers(this, $0)",
-          shareeOptions);
-    } else {
-      component.getElement().executeJs("fcShareeConnector.create(this, $0)", shareeOptions);
-    }
+      if (this.withDefaultDriversListFirst) {
+        component.getElement().executeJs("fcShareeConnector.createWithCustomDrivers(this, $0)",
+            shareeOptions);
+      } else {
+        this.create(shareeOptions);
+      }
+    }   
+  }
+  
+  private void create(String shareeOptions) {
+    component.getElement().executeJs("fcShareeConnector.create(this, $0)", shareeOptions);
   }
 
   /**

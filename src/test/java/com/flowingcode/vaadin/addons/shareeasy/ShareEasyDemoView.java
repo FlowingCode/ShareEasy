@@ -42,6 +42,7 @@ public class ShareEasyDemoView extends TabbedDemo {
     addDemo(TextModeDemo.class);
     addDemo(HoverModeDemo.class);
     addDemo(FixedModeDemo.class);
+    addDemo(SpecialCustomizationsDemo.class);
     setSizeFull();
   }
 }

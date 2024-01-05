@@ -19,11 +19,13 @@
  */
 package com.flowingcode.vaadin.addons.shareeasy.enums;
 
+import com.flowingcode.vaadin.addons.shareeasy.ShareEasyDriver;
+
 /**
  * Enumeration that represents the drivers provided by default by Sharee library. Values: copy,
  * telegram, facebook, whatsapp, twitter, linkedin.
  */
-public enum Driver {
+public enum Driver implements ShareEasyDriver {
 
   COPY("copy"), TELEGRAM("telegram"), FACEBOOK("facebook"), WHATSAPP("whatsapp"), TWITTER(
       "twitter"), LINKEDIN("linkedin");
@@ -34,6 +36,7 @@ public enum Driver {
     this.name = name;
   }
 
+  @Override
   public String getName() {
     return name;
   }

@@ -21,6 +21,7 @@ package com.flowingcode.vaadin.addons.shareeasy.util;
 
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
+import com.flowingcode.vaadin.addons.shareeasy.ShareEasyDriver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Locale;
 import elemental.json.Json;
@@ -46,7 +47,7 @@ public class Options {
 
   private LanguageKeys languageKeys;
 
-  private Driver[] drivers = Driver.values();  
+  private ShareEasyDriver[] drivers = Driver.values();
 
   public String getShareText() {
     return shareText;
@@ -96,11 +97,11 @@ public class Options {
     this.languageKeys = languageKeys;
   }
 
-  public Driver[] getDrivers() {
+  public ShareEasyDriver[] getDrivers() {
     return drivers;
   }
 
-  public void setDrivers(Driver[] drivers) {
+  public void setDrivers(ShareEasyDriver[] drivers) {
     this.drivers = drivers;
   }
 

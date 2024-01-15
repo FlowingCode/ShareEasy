@@ -22,12 +22,14 @@ package com.flowingcode.vaadin.addons.shareeasy;
 import java.util.HashMap;
 import java.util.Map;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.flowingcode.vaadin.addons.demo.SourceCodeViewer;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Position;
 import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -43,6 +45,7 @@ import com.vaadin.flow.router.Route;
 public class FixedModeDemo extends BaseShareEasyDemo {
 
   public FixedModeDemo() {
+    
     addClassName("share-easy-fixed");// hide-source    
     Button topleft = createButton("Top Left");
     topleft.setId("topleft"); // hide-source 
@@ -53,6 +56,7 @@ public class FixedModeDemo extends BaseShareEasyDemo {
     Button bottomright = createButton("Bottom Right");
     bottomright.setId("bottomright"); // hide-source 
 
+    // begin-block example1
     topleft.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       FixedShareEasy.create().forComponent(this);
@@ -88,10 +92,13 @@ public class FixedModeDemo extends BaseShareEasyDemo {
     HorizontalLayout horizontalLayout =
         new HorizontalLayout(topleft, bottomleft, topright, bottomright);
     horizontalLayout.setClassName("share-easy-fixed-horizontal");
-    add(createContainerDivWithInfo("Position", horizontalLayout,
-        "By default, Share Easy menu is attached to the document's body and displays as a vertical menu at top left position."));
+    Div example1 = createContainerDivWithInfo("Position", horizontalLayout,
+        "By default, Share Easy menu is attached to the document's body and displays as a vertical menu at top left position.");
+    SourceCodeViewer.highlightOnHover(example1, "example1");
+    add(example1);
     addSeparator();
     // #endif
+    // end-block
 
     Button btn1 = createShowButton();
     btn1.setId("notitle"); // hide-source 
@@ -104,6 +111,7 @@ public class FixedModeDemo extends BaseShareEasyDemo {
     Button btn5 = createShowButton();
     btn5.setId("extrasocial"); // hide-source 
 
+    // begin-block example2
     btn1.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       FixedShareEasy.create().withNoTitle(true).forComponent(this);
@@ -117,10 +125,14 @@ public class FixedModeDemo extends BaseShareEasyDemo {
       btn5.setEnabled(true); // hide-source
     });
     // #if vaadin eq 0
-    add(createContainerDiv("Without title", btn1));
+    Div example2 = createContainerDiv("Without title", btn1);
+    SourceCodeViewer.highlightOnHover(example2, "example2");
+    add(example2);
     addSeparator();
     // #endif
+    // end-block
 
+    // begin-block example3
     btn2.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       LanguageKeys languageKeys1 = new LanguageKeys();
@@ -138,10 +150,14 @@ public class FixedModeDemo extends BaseShareEasyDemo {
       btn5.setEnabled(true); // hide-source
     });
     // #if vaadin eq 0
-    add(createContainerDiv("With only 2 drivers & custom language keys", btn2));
+    Div example3 = createContainerDiv("With only 2 drivers & custom language keys", btn2);
+    SourceCodeViewer.highlightOnHover(example3, "example3");
+    add(example3);
     addSeparator();
     // #endif
+    // end-block
 
+    // begin-block example4
     btn3.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       FixedShareEasy.create().withShareText("Visit our demo at: ").forComponent(this);
@@ -155,10 +171,14 @@ public class FixedModeDemo extends BaseShareEasyDemo {
       btn5.setEnabled(true); // hide-source
     });
     // #if vaadin eq 0
-    add(createContainerDiv("With custom share text", btn3));
+    Div example4 = createContainerDiv("With custom share text", btn3);
+    SourceCodeViewer.highlightOnHover(example4, "example4");
+    add(example4);
     addSeparator();
     // #endif
+    // end-block
 
+    // begin-block example5
     btn4.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       FixedShareEasy.create().withShareText("Visit our website! Go to ")
@@ -173,10 +193,14 @@ public class FixedModeDemo extends BaseShareEasyDemo {
       btn5.setEnabled(true); // hide-source
     });
     // #if vaadin eq 0
-    add(createContainerDiv("With custom share text & custom share link", btn4));
+    Div example5 = createContainerDiv("With custom share text & custom share link", btn4);
+    SourceCodeViewer.highlightOnHover(example5, "example5");
+    add(example5);
     addSeparator();
     // #endif
+    // end-block
 
+    // begin-block example6
     btn5.addClickListener(e -> {
       this.removeExistingFixedMenus(); // hide-source
       Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
@@ -192,12 +216,15 @@ public class FixedModeDemo extends BaseShareEasyDemo {
       btn4.setEnabled(true); // hide-source
     });
     // #if vaadin eq 0
-    add(createContainerDiv("With custom driver for extra social: Trello", btn5));
+    Div example6 = createContainerDiv("With custom driver for extra social: Trello", btn5);
+    SourceCodeViewer.highlightOnHover(example6, "example6");
+    add(example6);
     addSeparator();
     // #endif
+    // end-block
   }
 
-  // #if vaadin eq 0
+  /* button implementation */
   private Button createButton(String caption) {
     Button button = new Button(caption);
     button.addThemeVariants(ButtonVariant.LUMO_LARGE);
@@ -208,5 +235,4 @@ public class FixedModeDemo extends BaseShareEasyDemo {
   private Button createShowButton() {
     return this.createButton("Show");
   }
-  // #endif
 }

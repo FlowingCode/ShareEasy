@@ -22,6 +22,7 @@ package com.flowingcode.vaadin.addons.shareeasy;
 import java.util.HashMap;
 import java.util.Map;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.flowingcode.vaadin.addons.demo.SourceCodeViewer;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
@@ -40,56 +41,98 @@ import com.vaadin.flow.router.Route;
 public class NormalModeDemo extends BaseShareEasyDemo {
 
   public NormalModeDemo() {
+    // begin-block example1
     Div normalDiv1 = new Div();
     NormalShareEasy.create().forComponent(normalDiv1);
-    add(createContainerDiv("Default Values", normalDiv1)); // hide-source
+    // #if vaadin eq 0
+    Div example1 = createContainerDiv("Default Values", normalDiv1); // hide-source
+    SourceCodeViewer.highlightOnHover(example1, "example1");
+    add(example1);
+    addSeparator();
+    // #endif
     // show-source add(normalDiv1);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example2
     Div normalDiv2 = new Div();
     NormalShareEasy.create().withNoTitle(true).forComponent(normalDiv2);
-    add(createContainerDiv("Without title", normalDiv2)); // hide-source
+    // #if vaadin eq 0
+    Div example2 = createContainerDiv("Without title", normalDiv2); // hide-source
+    SourceCodeViewer.highlightOnHover(example2, "example2");
+    add(example2);
+    addSeparator();
+    // #endif
     // show-source add(normalDiv2);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example3
     Div normalDiv3 = new Div();
     LanguageKeys languageKeys1 = new LanguageKeys();
     languageKeys1.setTwitter("Share on Twitter");
     languageKeys1.setLinkedin("Share on Linkedin");
     NormalShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.TWITTER})
         .withCustomLanguageKeys(languageKeys1).forComponent(normalDiv3);
-    add(createContainerDiv("With only 2 drivers & custom language keys", normalDiv3)); // hide-source
+    // #if vaadin eq 0
+    Div example3 = createContainerDiv("With only 2 drivers & custom language keys", normalDiv3); 
+    SourceCodeViewer.highlightOnHover(example3, "example3");
+    add(example3);
+    addSeparator();
+    // #endif
     // show-source add(normalDiv3);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example4
     Div normalDiv4 = new Div();
     LanguageKeys languageKeys2 = new LanguageKeys();
     languageKeys2.setCopiedSuccessfully("Copiado");
     languageKeys2.setCopyLink("Copiar link");
     NormalShareEasy.create().withCustomLanguageKeys("es", languageKeys2).forComponent(normalDiv4);
-    add(createContainerDiv("With custom locale: es (spanish)", normalDiv4)); // hide-source
+    // #if vaadin eq 0
+    Div example4 = createContainerDiv("With custom locale: es (spanish)", normalDiv4);
+    SourceCodeViewer.highlightOnHover(example4, "example4");
+    add(example4);
+    addSeparator();
+    // #endif
     // show-source add(normalDiv4);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example5
     Div normalDiv5 = new Div();
     NormalShareEasy.create().withShareText("Visit our demo at: ").forComponent(normalDiv5);
-    add(createContainerDiv("With custom share text", normalDiv5)); // hide-source
+    // #if vaadin eq 0
+    Div example5 = createContainerDiv("With custom share text", normalDiv5);
+    SourceCodeViewer.highlightOnHover(example5, "example5");
+    add(example5);
+    addSeparator();
+    // #endif
     // show-source add(normalDiv5);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example6
     Div normalDiv6 = new Div();
     NormalShareEasy.create().withShareText("Visit our website! Go to ")
         .withShareLink("https://www.flowingcode.com/en/").forComponent(normalDiv6);
-    add(createContainerDiv("With custom share text & custom share link", normalDiv6)); // hide-source
+    // #if vaadin eq 0
+    Div example6 = createContainerDiv("With custom share text & custom share link", normalDiv6);
+    SourceCodeViewer.highlightOnHover(example6, "example6");
+    add(example6);
+    addSeparator();
+    // #endif
     // show-source add(normalDiv6);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example7
     Div normalDiv7 = new Div();
     Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
     customDrivers.put("Trello", new TrelloDriverOptions());
     NormalShareEasy.create().withCustomDrivers(customDrivers).forComponent(normalDiv7);
-    add(createContainerDiv("With custom driver for extra social: Trello", normalDiv7)); // hide-source
+    // #if vaadin eq 0
+    Div example7 = createContainerDiv("With custom driver for extra social: Trello", normalDiv7); 
+    SourceCodeViewer.highlightOnHover(example7, "example7");
+    add(example7);
+    // #endif
     // show-source add(normalDiv7);
+    // end-block
   }
 
 }

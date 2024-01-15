@@ -20,6 +20,7 @@
 package com.flowingcode.vaadin.addons.shareeasy;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.flowingcode.vaadin.addons.demo.SourceCodeViewer;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
@@ -40,7 +41,8 @@ import com.vaadin.flow.router.Route;
 @Route(value = "share-easy/default-values", layout = ShareEasyDemoView.class)
 public class DefaultValuesDemo extends BaseShareEasyDemo {
 
-  public DefaultValuesDemo() {
+  public DefaultValuesDemo() {    
+    // begin-block example1
     Button showBtn = new Button("Show");
     // #if vaadin eq 0
     addClassName("share-easy-fixed");
@@ -52,8 +54,11 @@ public class DefaultValuesDemo extends BaseShareEasyDemo {
     hideBtn.setDisableOnClick(true);
     hideBtn.setEnabled(false);
     btnsLayout.add(showBtn, hideBtn);
-    add(createContainerDivWithInfo("Fixed Mode", btnsLayout,
-        "Fixed Mode: Share Easy menu is attached to the document's body and displays as a vertical menu. By default is added at top left position."));
+      
+    Div example1 = createContainerDivWithInfo("Fixed Mode", btnsLayout,
+        "Fixed Mode: Share Easy menu is attached to the document's body and displays as a vertical menu. By default is added at top left position.");
+    SourceCodeViewer.highlightOnHover(example1, "example1");
+    add(example1);
     addSeparator();
     // #endif
     showBtn.addClickListener(e -> {
@@ -66,41 +71,60 @@ public class DefaultValuesDemo extends BaseShareEasyDemo {
       showBtn.setEnabled(true);
     });
     // #endif
+    // end-block
 
+    // begin-block example2
     Div normalDiv = new Div();
     NormalShareEasy.create().forComponent(normalDiv);
-    add(createContainerDiv("Normal Mode", normalDiv)); // hide-source
-    // show-source add(normalDiv);
-    addSeparator(); // hide-source
+    // #if vaadin eq 0
+    Div example2 = createContainerDiv("Normal Mode", normalDiv); // hide-source
+    SourceCodeViewer.highlightOnHover(example2, "example2");
+    add(example2);
+    addSeparator(); 
+    // #endif
+    // show-source add(normalDiv);   
+    // end-block
 
+    // begin-block example3
     Button dropdownButton = new Button("Share this");
     dropdownButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY); // hide-source
     DropdownShareEasy.create().forComponent(dropdownButton);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Dropdown Mode", dropdownButton,
-        "Dropdown Mode: Share Easy menu will appear on hover. As default it will be shown as a column dropdown."));
+    Div example3 = createContainerDivWithInfo("Dropdown Mode", dropdownButton,
+        "Dropdown Mode: Share Easy menu will appear on hover. As default it will be shown as a column dropdown.");
+    SourceCodeViewer.highlightOnHover(example3, "example3");
+    add(example3);
     addSeparator();
     // #endif
     // show-source add(dropdownButton);
+    // end-block
 
+    // begin-block example4
     Paragraph paragraph = new Paragraph(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     TextShareEasy.create().forComponent(paragraph);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Text Mode", paragraph,
-        "Text Mode: Select some text and Share Easy menu will popup to share the selected text."));
+    Div example4 = createContainerDivWithInfo("Text Mode", paragraph,
+        "Text Mode: Select some text and Share Easy menu will popup to share the selected text.");
+    SourceCodeViewer.highlightOnHover(example4, "example4");
+    add(example4);
     addSeparator();
     // #endif
     // show-source add(paragraph);
+    // end-block
 
+    // begin-block example5
     Button hoverButton = new Button(new Icon(VaadinIcon.CONNECT));
     hoverButton.addThemeVariants(ButtonVariant.LUMO_ICON);
     HoverShareEasy.create().forComponent(hoverButton);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Hover Mode", hoverButton,
-        "Hover Mode: Share Easy menu will appear on hover and will be displayed as an horizontal/row menu only."));
+    Div example5 = createContainerDivWithInfo("Hover Mode", hoverButton,
+        "Hover Mode: Share Easy menu will appear on hover and will be displayed as an horizontal/row menu only.");
+    SourceCodeViewer.highlightOnHover(example5, "example5");
+    add(example5);
     // #endif
     // show-source add(hoverButton);
+    // end-block
   }
 
 }

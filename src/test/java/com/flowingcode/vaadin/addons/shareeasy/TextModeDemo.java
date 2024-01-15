@@ -22,8 +22,10 @@ package com.flowingcode.vaadin.addons.shareeasy;
 import java.util.HashMap;
 import java.util.Map;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.flowingcode.vaadin.addons.demo.SourceCodeViewer;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -39,38 +41,61 @@ import com.vaadin.flow.router.Route;
 public class TextModeDemo extends BaseShareEasyDemo {
 
   public TextModeDemo() {
+    // begin-block example1
     Paragraph paragraph1 = createParagraph();
     TextShareEasy.create().forComponent(paragraph1);
-    add(createContainerDiv("Default Values", paragraph1)); // hide-source
-    // show-source add(paragraph1);
-    addSeparator(); // hide-source
+    // #if vaadin eq 0
+    Div example1 = createContainerDiv("Default Values", paragraph1);
+    SourceCodeViewer.highlightOnHover(example1, "example1");
+    add(example1);
+    addSeparator();
+    // #endif
+    // show-source add(paragraph1);    
+    // end-block
 
+    // begin-block example2
     Paragraph paragraph2 = createParagraph();
     TextShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.TWITTER})
         .forComponent(paragraph2);
-    add(createContainerDiv("With only 2 drivers", paragraph2)); // hide-source
+    // #if vaadin eq 0
+    Div example2 = createContainerDiv("With only 2 drivers", paragraph2);
+    SourceCodeViewer.highlightOnHover(example2, "example2");
+    add(example2);
+    addSeparator(); 
+    // #endif
     // show-source add(paragraph2);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example3
     Paragraph paragraph3 = createParagraph();
     TextShareEasy.create().withShareLink("https://www.flowingcode.com/en/")
         .forComponent(paragraph3);
-    add(createContainerDiv("With custom share link", paragraph3)); // hide-source
+    // #if vaadin eq 0
+    Div example3 = createContainerDiv("With custom share link", paragraph3); 
+    SourceCodeViewer.highlightOnHover(example3, "example3");
+    add(example3);
+    addSeparator(); 
+    // #endif
     // show-source add(paragraph3);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example4
     Paragraph paragraph4 = createParagraph();
     Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
     customDrivers.put("Trello", new TrelloDriverOptions());
     TextShareEasy.create().withCustomDrivers(customDrivers).forComponent(paragraph4);
-    add(createContainerDiv("With custom driver for extra social: Trello", paragraph4)); // hide-source
-    // show-source add(paragraph4);
+    // #if vaadin eq 0
+    Div example4 = createContainerDiv("With custom driver for extra social: Trello", paragraph4);
+    SourceCodeViewer.highlightOnHover(example4, "example4");
+    add(example4);
+    // #endif
+    // show-source add(paragraph4);   
+    // end-block
   }
 
-  // #if vaadin eq 0
+  /* paragraph implementation */
   private Paragraph createParagraph() {
     return new Paragraph(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
   }
-  // #endif
 }

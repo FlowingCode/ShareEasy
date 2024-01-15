@@ -20,6 +20,7 @@
 package com.flowingcode.vaadin.addons.shareeasy;
 
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.flowingcode.vaadin.addons.demo.SourceCodeViewer;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.vaadin.flow.component.html.Div;
@@ -40,16 +41,21 @@ import java.util.Map;
 public class SpecialCustomizationsDemo extends BaseShareEasyDemo {
 
   public SpecialCustomizationsDemo() {
+    // begin-block example1
     Div normalDiv1 = new Div();
     NormalShareEasy.create().withDrivers(new Driver[] {Driver.WHATSAPP, Driver.TWITTER,
         Driver.TELEGRAM, Driver.LINKEDIN, Driver.FACEBOOK, Driver.COPY}).forComponent(normalDiv1);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Default drivers with different order", normalDiv1, 
-        "Use 'withDrivers' method to list the default drivers in the wanted order")); 
+    Div example1 = createContainerDivWithInfo("Default drivers with different order", normalDiv1, 
+        "Use 'withDrivers' method to list the default drivers in the wanted order"); 
+    SourceCodeViewer.highlightOnHover(example1, "example1");
+    add(example1);
+    addSeparator();
     // #endif
     // show-source add(normalDiv1);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example2
     Div normalDiv2 = new Div();
     Map<String, CustomDriverOptions> customDrivers2 = new HashMap<>();
     NewTwitterDriverOptions newTwitterDriver = new NewTwitterDriverOptions();
@@ -59,13 +65,17 @@ public class SpecialCustomizationsDemo extends BaseShareEasyDemo {
             Driver.TELEGRAM, Driver.FACEBOOK, Driver.WHATSAPP, newTwitterDriver, Driver.LINKEDIN})
         .forComponent(normalDiv2);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Custom driver definition to replace old Twitter option with new X option",
+    Div example2 = createContainerDivWithInfo("Custom driver definition to replace old Twitter option with new X option",
         normalDiv2,
-        "Use 'witCustomDrivers' method to add the new custom driver for X and then call 'withDrivers' to list the drivers in the wanted order.")); 
+        "Use 'witCustomDrivers' method to add the new custom driver for X and then call 'withDrivers' to list the drivers in the wanted order."); 
+    SourceCodeViewer.highlightOnHover(example2, "example2");
+    add(example2);
+    addSeparator();
     // #endif
     // show-source add(normalDiv2);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example3
     Div normalDiv3 = new Div();
     Map<String, CustomDriverOptions> customDrivers3 = new HashMap<>();
     NewTwitterDriverOptions xDriver = new NewTwitterDriverOptions();
@@ -75,11 +85,13 @@ public class SpecialCustomizationsDemo extends BaseShareEasyDemo {
     NormalShareEasy.create().withCustomDrivers(customDrivers3)
         .withDrivers(new ShareEasyDriver[] {trelloDriver, xDriver}).forComponent(normalDiv3);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Custom drivers only", normalDiv3,
-        "Use 'witCustomDrivers' method to add the new custom drivers and then call 'withDrivers' to list the wanted drivers in the wanted order."));
+    Div example3 = createContainerDivWithInfo("Custom drivers only", normalDiv3,
+        "Use 'witCustomDrivers' method to add the new custom drivers and then call 'withDrivers' to list the wanted drivers in the wanted order.");
+    SourceCodeViewer.highlightOnHover(example3, "example3");
+    add(example3);
     // #endif
     // show-source add(normalDiv3);
-    addSeparator(); // hide-source
+    // end-block
    }
 
 }

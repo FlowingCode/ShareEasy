@@ -22,6 +22,7 @@ package com.flowingcode.vaadin.addons.shareeasy;
 import java.util.HashMap;
 import java.util.Map;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
+import com.flowingcode.vaadin.addons.demo.SourceCodeViewer;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Animation;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Type;
@@ -29,6 +30,7 @@ import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -44,6 +46,7 @@ import com.vaadin.flow.router.Route;
 public class DropdownModeDemo extends BaseShareEasyDemo {
 
   public DropdownModeDemo() {
+    // begin-block example1
     Button column = createButton("Column");
     Button row = createButton("Row");
     Button grid = createButton("Grid");
@@ -51,44 +54,71 @@ public class DropdownModeDemo extends BaseShareEasyDemo {
     DropdownShareEasy.create().withType(Type.ROW).forComponent(row);
     DropdownShareEasy.create().withType(Type.GRID).forComponent(grid);
     // #if vaadin eq 0
-    add(createContainerDivWithInfo("Type", new HorizontalLayout(column, row, grid),
-        "By default, Share Easy menu in Dropdown mode is displayed as column, but it can also be shown as row or grid."));
+    Div example1 = createContainerDivWithInfo("Type", new HorizontalLayout(column, row, grid),
+        "By default, Share Easy menu in Dropdown mode is displayed as column, but it can also be shown as row or grid.");
+    SourceCodeViewer.highlightOnHover(example1, "example1");
+    add(example1);
     addSeparator();
     // #endif
     //show-source add(new HorizontalLayout(column, row, grid));
-
+    // end-block
+    
+    // begin-block example2
     Button dropBtn1 = createShareDemoButton();
     DropdownShareEasy.create().withAnimation(Animation.FADE).forComponent(dropBtn1);
-    add(createContainerDiv("With animation fade", dropBtn1)); // hide-source
+    // #if vaadin eq 0
+    Div example2 = createContainerDiv("With animation fade", dropBtn1);
+    SourceCodeViewer.highlightOnHover(example2, "example2");
+    add(example2);
+    addSeparator(); 
+    // #endif
     // show-source add(dropBtn1);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example3
     Button dropBtn2 = createShareDemoButton();
     LanguageKeys languageKeys1 = new LanguageKeys();
     languageKeys1.setFacebook("Share on Facebook");
     languageKeys1.setLinkedin("Share on Linkedin");
     DropdownShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.FACEBOOK})
         .withCustomLanguageKeys(languageKeys1).forComponent(dropBtn2);
-    add(createContainerDiv("With only 2 drivers & custom language keys", dropBtn2)); // hide-source
+    // #if vaadin eq 0
+    Div example3 = createContainerDiv("With only 2 drivers & custom language keys", dropBtn2); 
+    SourceCodeViewer.highlightOnHover(example3, "example3");
+    add(example3);
+    addSeparator(); 
+    // #endif
     // show-source add(dropBtn2);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example4
     Button dropBtn3 = createShareDemoButton();
     DropdownShareEasy.create().withShareText("Visit our website! Go to ")
         .withShareLink("https://www.flowingcode.com/en/").forComponent(dropBtn3);
-    add(createContainerDiv("With custom share text & custom share link", dropBtn3)); // hide-source
+    // #if vaadin eq 0
+    Div example4 = createContainerDiv("With custom share text & custom share link", dropBtn3); 
+    SourceCodeViewer.highlightOnHover(example4, "example4");
+    add(example4);
+    addSeparator(); 
+    // #endif
     // show-source add(dropBtn3);
-    addSeparator(); // hide-source
+    // end-block
 
+    // begin-block example5
     Button dropBtn4 = createShareDemoButton();
     Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
     customDrivers.put("Trello", new TrelloDriverOptions());
     DropdownShareEasy.create().withCustomDrivers(customDrivers).forComponent(dropBtn4);
-    add(createContainerDiv("With custom driver for extra social: Trello", dropBtn4)); // hide-source
+    // #if vaadin eq 0
+    Div example5 = createContainerDiv("With custom driver for extra social: Trello", dropBtn4);
+    SourceCodeViewer.highlightOnHover(example5, "example5");
+    add(example5);
+    // #endif
     // show-source add(dropBtn4);
+    // end-block
   }
-
-  // #if vaadin eq 0
+  
+  /* share demo button implementation */
   private Button createShareDemoButton() {
     return this.createButton("Share Demo");
   }
@@ -98,5 +128,4 @@ public class DropdownModeDemo extends BaseShareEasyDemo {
     button.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
     return button;
   }
-  // #endif
 }

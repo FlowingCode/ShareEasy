@@ -38,6 +38,7 @@ import com.vaadin.flow.router.Route;
  */
 @SuppressWarnings("serial")
 @DemoSource
+@DemoSource(value = "/src/test/java/com/flowingcode/vaadin/addons/shareeasy/TrelloDriverOptions.java")
 @PageTitle("Dropdown Mode Demo")
 @Route(value = "share-easy/dropdown-mode", layout = ShareEasyDemoView.class)
 public class DropdownModeDemo extends BaseShareEasyDemo {

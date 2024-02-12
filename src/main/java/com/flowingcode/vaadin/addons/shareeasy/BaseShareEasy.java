@@ -115,7 +115,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
    * @param drivers An array of social media drivers
    * @return The current instance of the BaseSharee class
    */
-  T withDrivers(ShareEasyDriver[] drivers) {
+  public T withDrivers(ShareEasyDriver[] drivers) {
     this.options.setDrivers(drivers);
     this.withDefaultDriversListFirst = false;
     return (T) this;

@@ -53,7 +53,7 @@ public class FixedShareEasy extends BaseShareEasy<FixedShareEasy> {
   }
   
   @Override
-  FixedShareEasy withDrivers(ShareEasyDriver[] drivers) {
+  public FixedShareEasy withDrivers(ShareEasyDriver[] drivers) {
     FixedShareEasy fixedShareEasy = super.withDrivers(drivers);
     this.withDefaultDriversListFirst = true;
     return fixedShareEasy;

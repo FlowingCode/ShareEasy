@@ -55,7 +55,7 @@ public class TextModeDemo extends BaseShareEasyDemo {
 
     // begin-block example2
     Paragraph paragraph2 = createParagraph();
-    TextShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.TWITTER})
+    TextShareEasy.create().withDrivers(Driver.LINKEDIN, Driver.TWITTER)
         .forComponent(paragraph2);
     // #if vaadin eq 0
     Div example2 = createContainerDiv("With only 2 drivers", paragraph2);

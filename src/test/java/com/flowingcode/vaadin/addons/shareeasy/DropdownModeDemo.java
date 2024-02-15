@@ -80,7 +80,7 @@ public class DropdownModeDemo extends BaseShareEasyDemo {
     LanguageKeys languageKeys1 = new LanguageKeys();
     languageKeys1.setFacebook("Share on Facebook");
     languageKeys1.setLinkedin("Share on Linkedin");
-    DropdownShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.FACEBOOK})
+    DropdownShareEasy.create().withDrivers(Driver.LINKEDIN, Driver.FACEBOOK)
         .withCustomLanguageKeys(languageKeys1).forComponent(dropBtn2);
     // #if vaadin eq 0
     Div example3 = createContainerDiv("With only 2 drivers & custom language keys", dropBtn2); 

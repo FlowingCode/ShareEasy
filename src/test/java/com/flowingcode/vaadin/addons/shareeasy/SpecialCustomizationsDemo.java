@@ -43,8 +43,8 @@ public class SpecialCustomizationsDemo extends BaseShareEasyDemo {
   public SpecialCustomizationsDemo() {
     // begin-block example1
     Div normalDiv1 = new Div();
-    NormalShareEasy.create().withDrivers(new Driver[] {Driver.WHATSAPP, Driver.TWITTER,
-        Driver.TELEGRAM, Driver.LINKEDIN, Driver.FACEBOOK, Driver.COPY}).forComponent(normalDiv1);
+    NormalShareEasy.create().withDrivers(Driver.WHATSAPP, Driver.TWITTER,
+        Driver.TELEGRAM, Driver.LINKEDIN, Driver.FACEBOOK, Driver.COPY).forComponent(normalDiv1);
     // #if vaadin eq 0
     Div example1 = createContainerDivWithInfo("Default drivers with different order", normalDiv1, 
         "Use 'withDrivers' method to list the default drivers in the wanted order"); 
@@ -61,8 +61,8 @@ public class SpecialCustomizationsDemo extends BaseShareEasyDemo {
     NewTwitterDriverOptions newTwitterDriver = new NewTwitterDriverOptions();
     customDrivers2.put("X", newTwitterDriver);
     NormalShareEasy
-        .create().withCustomDrivers(customDrivers2).withDrivers(new ShareEasyDriver[] {Driver.COPY,
-            Driver.TELEGRAM, Driver.FACEBOOK, Driver.WHATSAPP, newTwitterDriver, Driver.LINKEDIN})
+        .create().withCustomDrivers(customDrivers2).withDrivers(Driver.COPY,
+            Driver.TELEGRAM, Driver.FACEBOOK, Driver.WHATSAPP, newTwitterDriver, Driver.LINKEDIN)
         .forComponent(normalDiv2);
     // #if vaadin eq 0
     Div example2 = createContainerDivWithInfo("Custom driver definition to replace old Twitter option with new X option",
@@ -83,7 +83,7 @@ public class SpecialCustomizationsDemo extends BaseShareEasyDemo {
     TrelloDriverOptions trelloDriver = new TrelloDriverOptions();
     customDrivers3.put("trello", trelloDriver);
     NormalShareEasy.create().withCustomDrivers(customDrivers3)
-        .withDrivers(new ShareEasyDriver[] {trelloDriver, xDriver}).forComponent(normalDiv3);
+        .withDrivers(trelloDriver, xDriver).forComponent(normalDiv3);
     // #if vaadin eq 0
     Div example3 = createContainerDivWithInfo("Custom drivers only", normalDiv3,
         "Use 'witCustomDrivers' method to add the new custom drivers and then call 'withDrivers' to list the wanted drivers in the wanted order.");

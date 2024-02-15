@@ -58,7 +58,7 @@ public class HoverModeDemo extends BaseShareEasyDemo {
 
     // begin-block example2
     Button hoverBtn2 = createButton();
-    HoverShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.FACEBOOK})
+    HoverShareEasy.create().withDrivers(Driver.LINKEDIN, Driver.FACEBOOK)
         .forComponent(hoverBtn2);
     // #if vaadin eq 0
     Div example2 = createContainerDiv("With only 2 drivers", hoverBtn2);

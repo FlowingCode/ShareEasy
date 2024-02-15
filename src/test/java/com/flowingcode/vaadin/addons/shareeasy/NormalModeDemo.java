@@ -70,7 +70,7 @@ public class NormalModeDemo extends BaseShareEasyDemo {
     LanguageKeys languageKeys1 = new LanguageKeys();
     languageKeys1.setTwitter("Share on Twitter");
     languageKeys1.setLinkedin("Share on Linkedin");
-    NormalShareEasy.create().withDrivers(new Driver[] {Driver.LINKEDIN, Driver.TWITTER})
+    NormalShareEasy.create().withDrivers(Driver.LINKEDIN, Driver.TWITTER)
         .withCustomLanguageKeys(languageKeys1).forComponent(normalDiv3);
     // #if vaadin eq 0
     Div example3 = createContainerDiv("With only 2 drivers & custom language keys", normalDiv3); 

@@ -23,12 +23,14 @@ window.fcShareeConnector = {
 
 	create: function (container, optionsJson) {
 		this._updateSocialShareLinks();
+		this._updateCopyDriverOnClick();
 		let parsedOptions = JSON.parse(optionsJson);
 		const sharee = new Sharee(container, parsedOptions);
 	},
 
 	createWithCustomDrivers: function (container, optionsJson) {
 		this._updateSocialShareLinks();
+		this._updateCopyDriverOnClick();
 		let parsedOptions = JSON.parse(optionsJson);
 		// add the custom drivers to the list of drivers
 		let drivers = parsedOptions.drivers.concat(container.customDrivers);
@@ -105,4 +107,32 @@ window.fcShareeConnector = {
 		}
 	},
 
+	/**
+	 * Replaces onClick function on CopyDriver to take in consideration shareLink option 
+	 * if exists. (Fixes https://github.com/FlowingCode/ShareEasy/issues/8) 
+	 */
+	_updateCopyDriverOnClick() {
+		Sharee.drivers['copy'].prototype.onClick = function(e) {
+		    const successText = this.lang['CopiedSuccessfully']
+		    const el = e.currentTarget;
+		    const textEl = el.querySelector('div:nth-child(2)')
+		    if (textEl.innerHTML === successText) {
+		      textEl.innerHTML = this.getButtonText()
+		      return
+		    }
+		    let copyText = this.options?.shareLink || window.location.href
+		    navigator.clipboard.writeText(copyText).then(() => {
+		      textEl.innerHTML = successText
+		      textEl.style.transition = '300ms all'
+		      textEl.style.transform = 'scale(1)'
+		      textEl.style.transform = `scale(1.07) translateX(${this.lang.Direction === 'rtl' ? '-' : ''}4px)`
+		      clearTimeout(this.timeout)
+		      this.timeout = setTimeout(() => {
+		        textEl.innerHTML = this.getButtonText()
+		        textEl.style.transition = 'none'
+		        textEl.style.transform = 'scale(1)'
+		      }, 5000)
+		    });
+  		}
+	}
 }

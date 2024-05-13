@@ -94,16 +94,16 @@ window.fcShareeConnector = {
 	 */
 	_updateSocialShareLinks() {
 		Sharee.drivers['facebook'].prototype.getLink = function () {
-			return `https://facebook.com/sharer/sharer.php?u=${this.options?.shareLink}&t=${encodeURIComponent(this.options?.shareText)}`
+			return `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.options?.shareLink)}&t=${encodeURIComponent(this.options?.shareText)}`
 		}
 		Sharee.drivers['whatsapp'].prototype.getLink = function () {
-			return `https://wa.me?text=${this.options?.shareText} \n ${this.options?.shareLink}`
+			return `https://wa.me?text=${encodeURIComponent(this.options?.shareText)} \n ${encodeURIComponent(this.options?.shareLink)}`
 		}
 		Sharee.drivers['twitter'].prototype.getLink = function () {
-			return `https://twitter.com/intent/tweet?text=${encodeURIComponent(this.options?.shareText)}&url=${this.options?.shareLink}`
+			return `https://twitter.com/intent/tweet?text=${encodeURIComponent(this.options?.shareText)}&url=${encodeURIComponent(this.options?.shareLink)}`
 		}
 		Sharee.drivers['linkedin'].prototype.getLink = function () {
-			return `https://www.linkedin.com/shareArticle?url=${this.options?.shareLink}`
+			return `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(this.options?.shareLink)}`
 		}
 	},
 

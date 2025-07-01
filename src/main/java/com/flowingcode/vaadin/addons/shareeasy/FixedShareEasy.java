@@ -19,8 +19,6 @@
  */
 package com.flowingcode.vaadin.addons.shareeasy;
 
-import java.util.stream.Stream;
-import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Mode;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Position;
 import elemental.json.Json;
@@ -36,10 +34,7 @@ public class FixedShareEasy extends BaseShareEasy<FixedShareEasy> {
   public boolean noTitle = false;
 
   public static FixedShareEasy create() {
-    // remove copy driver cause is not working https://github.com/parsagholipour/sharee/issues/4
-    Driver[] fixedDrivers =
-        Stream.of(Driver.values()).filter(d -> Driver.COPY != d).toArray(Driver[]::new);
-    return new FixedShareEasy().withDrivers(fixedDrivers);
+    return new FixedShareEasy();
   }
 
   public FixedShareEasy withPosition(Position position) {

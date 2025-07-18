@@ -78,6 +78,7 @@ window.fcShareeConnector = {
 			this.getName = () => {
 				return driverOptions.name;
 			}
+			this.hasLink = () => !!driverOptions.link;
 		};
 
 		Object.defineProperty(f, 'name', { value: name });

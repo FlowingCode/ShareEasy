@@ -22,12 +22,14 @@ import Sharee from 'sharee';
 window.fcShareeConnector = {
 
 	create: function (container, optionsJson) {
+        this._updateXButtonLabel();
 		this._updateCopyDriverOnClick();
 		let parsedOptions = JSON.parse(optionsJson);
 		const sharee = new Sharee(container, parsedOptions);
 	},
 
 	createWithCustomDrivers: function (container, optionsJson) {
+        this._updateXButtonLabel();
 		this._updateCopyDriverOnClick();
 		let parsedOptions = JSON.parse(optionsJson);
 		// add the custom drivers to the list of drivers
@@ -114,5 +116,14 @@ window.fcShareeConnector = {
 		      }, 5000)
 		    });
   		}
-	}
+	},
+    
+    /*
+     * Workaround to X driver button text to show only "X" instead "X.com" as in the base component.
+     */
+    _updateXButtonLabel() {
+        Sharee.drivers['x'].prototype.getButtonText = function () {
+            return "X";
+        }
+    }
 }

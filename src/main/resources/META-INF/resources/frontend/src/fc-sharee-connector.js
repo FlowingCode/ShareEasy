@@ -21,22 +21,24 @@ import Sharee from 'sharee';
 
 window.fcShareeConnector = {
 
-	create: function (container, optionsJson) {
+    create: function(container, optionsJson) {
         this._updateXButtonLabel();
-		this._updateCopyDriverOnClick();
-		let parsedOptions = JSON.parse(optionsJson);
-		const sharee = new Sharee(container, parsedOptions);
-	},
+        this._updateSocialShareLinks();
+        this._updateCopyDriverOnClick();
+        let parsedOptions = JSON.parse(optionsJson);
+        const sharee = new Sharee(container, parsedOptions);
+    },
 
-	createWithCustomDrivers: function (container, optionsJson) {
+    createWithCustomDrivers: function(container, optionsJson) {
         this._updateXButtonLabel();
-		this._updateCopyDriverOnClick();
-		let parsedOptions = JSON.parse(optionsJson);
-		// add the custom drivers to the list of drivers
-		let drivers = parsedOptions.drivers.concat(container.customDrivers);
-		parsedOptions.drivers = drivers;
-		const sharee = new Sharee(container, parsedOptions);
-	},
+        this._updateSocialShareLinks();
+        this._updateCopyDriverOnClick();
+        let parsedOptions = JSON.parse(optionsJson);
+        // add the custom drivers to the list of drivers
+        let drivers = parsedOptions.drivers.concat(container.customDrivers);
+        parsedOptions.drivers = drivers;
+        const sharee = new Sharee(container, parsedOptions);
+    },
 
 	addCustomDriver(container, customDriverJson) {
 		if (container.customDrivers == null) {
@@ -88,6 +90,22 @@ window.fcShareeConnector = {
 
 		Sharee.addDriver(name, f);
 	},	
+    
+    /*
+     * Workaround because of issue https://github.com/parsagholipour/sharee/issues/8
+     * (to be removed when issue is fixed)
+     */
+    _updateSocialShareLinks() {
+        Sharee.drivers['facebook'].prototype.getLink = function() {
+            return `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.options?.shareLink)}&t=${encodeURIComponent(this.options?.shareText)}`
+        }
+        Sharee.drivers['whatsapp'].prototype.getLink = function() {
+            return `https://wa.me?text=${encodeURIComponent(this.options?.shareText)} \n ${encodeURIComponent(this.options?.shareLink)}`
+        }
+        Sharee.drivers['linkedin'].prototype.getLink = function() {
+            return `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(this.options?.shareLink)}`
+        }
+    },
 	
 	/**
 	 * Replaces onClick function on CopyDriver to take in consideration shareLink option 

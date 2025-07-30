@@ -22,17 +22,13 @@ import Sharee from 'sharee';
 window.fcShareeConnector = {
 
     create: function(container, optionsJson) {
-        this._updateXButtonLabel();
-        this._updateSocialShareLinks();
-        this._updateCopyDriverOnClick();
+        this._configureDrivers();
         let parsedOptions = JSON.parse(optionsJson);
         const sharee = new Sharee(container, parsedOptions);
     },
 
     createWithCustomDrivers: function(container, optionsJson) {
-        this._updateXButtonLabel();
-        this._updateSocialShareLinks();
-        this._updateCopyDriverOnClick();
+        this._configureDrivers();
         let parsedOptions = JSON.parse(optionsJson);
         // add the custom drivers to the list of drivers
         let drivers = parsedOptions.drivers.concat(container.customDrivers);
@@ -90,6 +86,18 @@ window.fcShareeConnector = {
 
 		Sharee.addDriver(name, f);
 	},	
+    
+    /**
+     * Configures Sharee drivers by applying required overrides and fixes.
+     * 
+     * Includes workarounds for missing features and/or known issues in the base library.
+     * To be revisited if upstream issues are resolved.
+     */
+    _configureDrivers() {
+        this._updateXButtonLabel();
+        this._updateSocialShareLinks();
+        this._updateCopyDriverOnClick();
+    },
     
     /*
      * Workaround because of issue https://github.com/parsagholipour/sharee/issues/8

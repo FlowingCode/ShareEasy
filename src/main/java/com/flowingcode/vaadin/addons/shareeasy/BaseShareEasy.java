@@ -39,7 +39,7 @@ import elemental.json.JsonObject;
  * 
  * @author Paola De Bartolo / Flowing Code
  */
-@NpmPackage(value = "sharee", version = "1.1.23")
+@NpmPackage(value = "sharee", version = "1.1.24")
 @JsModule("./src/fc-sharee-connector.js")
 @CssImport("./styles/fc-share-easy/style.css")
 class BaseShareEasy<T extends BaseShareEasy<T>> {

@@ -2,7 +2,7 @@
  * #%L
  * Share Easy Add-on
  * %%
- * Copyright (C) 2023 - 2025 Flowing Code
+ * Copyright (C) 2023 - 2026 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 package com.flowingcode.vaadin.addons.shareeasy.util;
 
 import java.util.Optional;
-import org.apache.commons.lang3.StringUtils;
 import com.flowingcode.vaadin.addons.shareeasy.ShareEasyDriver;
 import elemental.json.Json;
 import elemental.json.JsonObject;
@@ -157,7 +156,7 @@ public class CustomDriverOptions implements ShareEasyDriver {
     Optional.ofNullable(name).ifPresent(value -> js.put("name", value));
 
     js.put("linkWithParams",
-        StringUtils.isNotBlank(shareLinkParam) || StringUtils.isNotBlank(shareTextParam));
+        OptionsUtils.isNotBlank(shareLinkParam) || OptionsUtils.isNotBlank(shareTextParam));
 
     return js;
   }

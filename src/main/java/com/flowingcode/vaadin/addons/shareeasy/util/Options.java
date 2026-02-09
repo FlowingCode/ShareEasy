@@ -2,7 +2,7 @@
  * #%L
  * Share Easy Add-on
  * %%
- * Copyright (C) 2023 - 2025 Flowing Code
+ * Copyright (C) 2023 - 2026 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 package com.flowingcode.vaadin.addons.shareeasy.util;
 
 import java.util.Optional;
-import org.apache.commons.lang3.StringUtils;
 import com.flowingcode.vaadin.addons.shareeasy.ShareEasyDriver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Locale;
@@ -115,7 +114,7 @@ public class Options {
     js.put("showTransitionDuration", showTransitionDuration);
     js.put("lang", locale);
 
-    if (languageKeys != null && StringUtils.isNotBlank(locale)) {
+    if (languageKeys != null && OptionsUtils.isNotBlank(locale)) {
       JsonObject langs = Json.createObject();
       langs.put(locale, languageKeys.getJsonObject());
       js.put("langs", langs);

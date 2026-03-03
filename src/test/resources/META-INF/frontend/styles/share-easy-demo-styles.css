@@ -41,9 +41,16 @@
 	padding: 5px 0 10px 0;
 }
 
+.share-easy-container span vaadin-button[theme~="tertiary-inline"] {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	padding-block: 0;
+}
+
 .share-easy-container span vaadin-button vaadin-icon {
-	width: var(--lumo-icon-size-s);
-	height: var(--lumo-icon-size-s);
+	width: var(--lumo-icon-size-s, 1.25em);
+	height: var(--lumo-icon-size-s, 1.25em);
 }
 
 .share-easy-fixed-horizontal {

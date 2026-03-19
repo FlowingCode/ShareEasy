@@ -15,6 +15,10 @@ This component is a wrapper of [Sharee](https://github.com/parsagholipour/sharee
 - Modes to display the Easy Share menu: Fixed, Normal, Hover, Text, Dropdown.
 - By defaut, locale and keys are in English but custom locales and keys can be defined.
 
+## Supported versions
+
+Supported versions: Vaadin 24-25 (add-on version 2.x)
+
 ## Online demo
 
 [Online demo here](http://addonsv24.flowingcode.com/share-easy)

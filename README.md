@@ -14,6 +14,7 @@ This component is a wrapper of [Sharee](https://github.com/parsagholipour/sharee
 - Default social media drivers to share links easily: Copy, Twitter, Facebook, Linkedin, Whatsapp, Telegram.
 - Modes to display the Easy Share menu: Fixed, Normal, Hover, Text, Dropdown.
 - By defaut, locale and keys are in English but custom locales and keys can be defined.
+- Listen to share actions to track which driver was clicked.
 
 ## Supported versions
 
@@ -111,6 +112,20 @@ FixedShareEasy.create().forComponent(this);
 /* Normal mode */
 Div div = new Div();
 NormalShareEasy.create().withNoTitle(true).forComponent(div);
+add(div);
+```
+
+## Listening to share actions
+
+Register a listener to be notified when one of the share drivers is clicked. The event exposes the
+clicked driver (both as the raw name and, for default drivers, as a `Driver` enum value) and the
+share link:
+
+```java
+Div div = new Div();
+NormalShareEasy.create()
+    .withShareListener(event -> Notification.show("Shared via " + event.getDriverName()))
+    .forComponent(div);
 add(div);
 ```
 

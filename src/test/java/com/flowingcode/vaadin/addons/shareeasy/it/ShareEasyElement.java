@@ -30,27 +30,32 @@ public class ShareEasyElement extends DivElement {
   }
 
   public boolean copyExists() {
-    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__F").exists();
+    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__copy").exists();
   }
 
   public boolean telegramExists() {
-    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__I").exists();
+    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__telegram")
+        .exists();
   }
 
   public boolean facebookExists() {
-    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__G").exists();
+    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__facebook")
+        .exists();
   }
 
   public boolean whatsappExists() {
-    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__P").exists();
+    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__whatsapp")
+        .exists();
   }
 
   public boolean twitterExists() {
-    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__W").exists();
+    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__twitter")
+        .exists();
   }
 
   public boolean linkedinExists() {
-    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__A").exists();
+    return this.$(AnchorElement.class).attributeContains("class", "sharee__driver__linkedin")
+        .exists();
   }
 
   public boolean normalModeContainAllDefaultValues() {

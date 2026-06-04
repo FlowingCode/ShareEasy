@@ -19,6 +19,7 @@
  */
 package com.flowingcode.vaadin.addons.shareeasy.enums;
 
+import java.util.Optional;
 import com.flowingcode.vaadin.addons.shareeasy.ShareEasyDriver;
 
 /**
@@ -39,5 +40,22 @@ public enum Driver implements ShareEasyDriver {
   @Override
   public String getName() {
     return name;
+  }
+
+  /**
+   * Resolves a default driver from its name (the name carried by the share event), if it matches one
+   * of the default drivers.
+   *
+   * @param name the driver name, e.g. "telegram"
+   * @return the matching {@link Driver}, or an empty {@link Optional} if the name does not correspond
+   *         to a default driver (for instance, a custom driver)
+   */
+  public static Optional<Driver> fromName(String name) {
+    for (Driver driver : values()) {
+      if (driver.name.equals(name)) {
+        return Optional.of(driver);
+      }
+    }
+    return Optional.empty();
   }
 }

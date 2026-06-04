@@ -27,6 +27,7 @@ import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -127,11 +128,25 @@ public class NormalModeDemo extends BaseShareEasyDemo {
     customDrivers.put("Trello", new TrelloDriverOptions());
     NormalShareEasy.create().withCustomDrivers(customDrivers).forComponent(normalDiv7);
     // #if vaadin eq 0
-    Div example7 = createContainerDiv("With custom driver for extra social: Trello", normalDiv7); 
+    Div example7 = createContainerDiv("With custom driver for extra social: Trello", normalDiv7);
     SourceCodeViewer.highlightOnHover(example7, "example7");
     add(example7);
+    addSeparator();
     // #endif
     // show-source add(normalDiv7);
+    // end-block
+
+    // begin-block example8
+    Div normalDiv8 = new Div();
+    NormalShareEasy.create()
+        .withShareListener(event -> Notification.show("Shared via " + event.getDriverName()))
+        .forComponent(normalDiv8);
+    // #if vaadin eq 0
+    Div example8 = createContainerDiv("With share listener", normalDiv8);
+    SourceCodeViewer.highlightOnHover(example8, "example8");
+    add(example8);
+    // #endif
+    // show-source add(normalDiv8);
     // end-block
   }
 

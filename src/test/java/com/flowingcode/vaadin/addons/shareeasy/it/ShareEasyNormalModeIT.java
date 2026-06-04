@@ -23,6 +23,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import com.vaadin.flow.component.html.testbench.AnchorElement;
+import com.vaadin.flow.component.notification.testbench.NotificationElement;
 
 public class ShareEasyNormalModeIT extends BaseShareEasyIT {
 
@@ -71,5 +72,21 @@ public class ShareEasyNormalModeIT extends BaseShareEasyIT {
     int driversCount = normalWithExtraSocial.getAllDriversAnchors().size();
     assertTrue("Normal Share Easy shows no extra social",
         driversCount == DEFAULT_NORMAL_DRIVER_COUNT + 1);
+  }
+
+  @Test
+  public void withShareListener_clickDriver_firesEvent() {
+    // The Sharee instances are created asynchronously via executeJs, so wait until the
+    // share-listener example (the 8th normal share) has rendered before interacting.
+    waitUntil(driver -> $(ShareEasyElement.class).attributeContains("class", "sharee__normal").all()
+        .size() > 7);
+    ShareEasyElement normalWithShareListener =
+        $(ShareEasyElement.class).attributeContains("class", "sharee__normal").get(7);
+    AnchorElement copyDriver = normalWithShareListener.$(AnchorElement.class)
+        .attributeContains("class", "sharee__driver__copy").waitForFirst();
+    copyDriver.click();
+    NotificationElement notification = $(NotificationElement.class).waitForFirst();
+    assertTrue("Share listener was not notified with the clicked driver name",
+        notification.getText().contains("copy"));
   }
 }

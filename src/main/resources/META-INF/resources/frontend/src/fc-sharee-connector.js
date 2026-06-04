@@ -24,6 +24,7 @@ window.fcShareeConnector = {
 	create: function (container, optionsJson) {
         this._updateXButtonLabel();
 		this._updateCopyDriverOnClick();
+		this._patchDriverNames();
 		let parsedOptions = JSON.parse(optionsJson);
 		const sharee = new Sharee(container, parsedOptions);
 	},
@@ -31,6 +32,7 @@ window.fcShareeConnector = {
 	createWithCustomDrivers: function (container, optionsJson) {
         this._updateXButtonLabel();
 		this._updateCopyDriverOnClick();
+		this._patchDriverNames();
 		let parsedOptions = JSON.parse(optionsJson);
 		// add the custom drivers to the list of drivers
 		let drivers = parsedOptions.drivers.concat(container.customDrivers);
@@ -95,6 +97,26 @@ window.fcShareeConnector = {
 	 */
 	_updateCopyDriverOnClick() {
 		Sharee.drivers['copy'].prototype.onClick = function(e) {
+			// The copy driver copies a URL instead of navigating, so the shared
+			// "link" is the text that gets copied (the base CopyDriver's getLink()
+			// is undefined). Dispatch the same "driver-clicked" event the base
+			// driver emits via super.onClick (lost when onClick is fully replaced
+			// here), carrying the actual copied URL.
+			const copyText = this.options?.shareLink || window.location.href
+			const event = new CustomEvent('driver-clicked', {
+				detail: {
+					name: this.getName(),
+					link: copyText,
+					originalEvent: e,
+				},
+				bubbles: true,
+				composed: true,
+			});
+			this.options?.targetElement.dispatchEvent(event);
+			// Honor preventDefault as the base CopyDriver does after super.onClick.
+			if (e.defaultPrevented) {
+			  return
+			}
 		    const successText = this.lang['CopiedSuccessfully']
 		    const el = e.currentTarget;
 		    const textEl = el.querySelector('div:nth-child(2)')
@@ -102,7 +124,6 @@ window.fcShareeConnector = {
 		      textEl.innerHTML = this.getButtonText()
 		      return
 		    }
-		    let copyText = this.options?.shareLink || window.location.href
 		    navigator.clipboard.writeText(copyText).then(() => {
 		      textEl.innerHTML = successText
 		      textEl.style.transition = '300ms all'
@@ -125,5 +146,20 @@ window.fcShareeConnector = {
         Sharee.drivers['x'].prototype.getButtonText = function () {
             return "X";
         }
-    }
+    },
+
+	/**
+	 * Overrides getName on each default driver so that it returns the driver's
+	 * registered key (e.g. "telegram", "copy") instead of the bundled (and
+	 * unstable) class name. This makes the name carried by the "driver-clicked"
+	 * event reliable on the server side. Custom drivers already define their own
+	 * getName in _addDriver, so they are not affected.
+	 */
+	_patchDriverNames() {
+		Object.keys(Sharee.drivers).forEach(function (name) {
+			Sharee.drivers[name].prototype.getName = function () {
+				return name;
+			};
+		});
+	}
 }

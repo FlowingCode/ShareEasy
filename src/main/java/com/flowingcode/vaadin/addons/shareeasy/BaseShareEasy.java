@@ -21,16 +21,22 @@ package com.flowingcode.vaadin.addons.shareeasy;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import com.flowingcode.vaadin.addons.shareeasy.enums.Driver;
 import com.flowingcode.vaadin.addons.shareeasy.enums.Locale;
 import com.flowingcode.vaadin.addons.shareeasy.util.CustomDriverOptions;
 import com.flowingcode.vaadin.addons.shareeasy.util.LanguageKeys;
 import com.flowingcode.vaadin.addons.shareeasy.util.Options;
+import com.flowingcode.vaadin.jsonmigration.JsonMigration;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.shared.Registration;
+
 import elemental.json.JsonObject;
+import elemental.json.JsonString;
+import lombok.experimental.ExtensionMethod;
 
 /**
  * BaseSharee represents the base class for creating Sharee instances.
@@ -42,6 +48,7 @@ import elemental.json.JsonObject;
 @NpmPackage(value = "sharee", version = "1.1.24")
 @JsModule("./src/fc-sharee-connector.js")
 @CssImport("./styles/fc-share-easy/style.css")
+@ExtensionMethod(value = JsonMigration.class, suppressBaseMethods = true)
 class BaseShareEasy<T extends BaseShareEasy<T>> {
 
   private Component component;
@@ -49,8 +56,12 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   private Options options = new Options();
 
   Map<String, CustomDriverOptions> customDrivers = new HashMap<>();
-  
+
   protected boolean withDefaultDriversListFirst = true;
+
+  private ShareEasyClickListener shareListener;
+
+  private Registration shareListenerRegistration;
 
   /**
    * Sets the share link for the shared content.
@@ -122,6 +133,17 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   }
 
   /**
+   * Sets the listener that is notified when one of the share drivers is clicked.
+   *
+   * @param shareListener the listener to notify on driver clicks
+   * @return The current instance of the BaseSharee class
+   */
+  public T withShareListener(ShareEasyClickListener shareListener) {
+    this.shareListener = shareListener;
+    return (T) this;
+  }
+
+  /**
    * Initializes the Sharee component with the specified Vaadin component.
    *
    * @param component The Vaadin component to associate with the Sharee instance
@@ -141,6 +163,7 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   }
 
   private void createSharee() {
+    registerShareListener();
     String shareeOptions = getJsonObjectOptions().toJson();
     if(customDrivers.isEmpty()) {
       this.create(shareeOptions);
@@ -160,6 +183,26 @@ class BaseShareEasy<T extends BaseShareEasy<T>> {
   
   private void create(String shareeOptions) {
     component.getElement().executeJs("fcShareeConnector.create(this, $0)", shareeOptions);
+  }
+
+  private void registerShareListener() {
+    if (shareListenerRegistration != null) {
+      shareListenerRegistration.remove();
+      shareListenerRegistration = null;
+    }
+    if (shareListener == null) {
+      return;
+    }
+    shareListenerRegistration = component.getElement().addEventListener("driver-clicked", event -> {
+      JsonObject detail = event.getEventData();
+      String driverName = getStringOrNull(detail, "event.detail.name");
+      String link = getStringOrNull(detail, "event.detail.link");
+      shareListener.onShare(new ShareEasyClickEvent(component, driverName, link));
+    }).addEventData("event.detail.name").addEventData("event.detail.link");
+  }
+
+  private static String getStringOrNull(JsonObject data, String key) {
+    return data.hasKey(key) && data.get(key) instanceof JsonString ? data.getString(key) : null;
   }
 
   /**

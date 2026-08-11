@@ -34,7 +34,7 @@ import java.util.Map;
  */
 @SuppressWarnings("serial")
 @DemoSource
-@DemoSource(value = "/src/test/java/com/flowingcode/vaadin/addons/shareeasy/TrelloDriverOptions.java")
+@DemoSource(clazz = TrelloDriverOptions.class)
 @PageTitle("Special Customizations Demo")
 @Route(value = "share-easy/special-customizations", layout = ShareEasyDemoView.class)
 public class SpecialCustomizationsDemo extends BaseShareEasyDemo {

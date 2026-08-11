@@ -39,7 +39,7 @@ import com.vaadin.flow.router.Route;
  */
 @SuppressWarnings("serial")
 @DemoSource
-@DemoSource(value = "/src/test/java/com/flowingcode/vaadin/addons/shareeasy/TrelloDriverOptions.java")
+@DemoSource(clazz = TrelloDriverOptions.class)
 @PageTitle("Fixed Mode Demo")
 @Route(value = "share-easy/fixed-mode", layout = ShareEasyDemoView.class)
 public class FixedModeDemo extends BaseShareEasyDemo {

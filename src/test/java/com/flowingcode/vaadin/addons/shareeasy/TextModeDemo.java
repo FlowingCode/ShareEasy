@@ -35,7 +35,7 @@ import com.vaadin.flow.router.Route;
  */
 @SuppressWarnings("serial")
 @DemoSource
-@DemoSource(value = "/src/test/java/com/flowingcode/vaadin/addons/shareeasy/TrelloDriverOptions.java")
+@DemoSource(clazz = TrelloDriverOptions.class)
 @PageTitle("Text Mode Demo")
 @Route(value = "share-easy/text-mode", layout = ShareEasyDemoView.class)
 public class TextModeDemo extends BaseShareEasyDemo {
